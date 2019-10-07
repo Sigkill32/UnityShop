@@ -61,7 +61,6 @@ class Cart extends Component {
     newCart[index].quantity = quantity + 1;
     newCart[index].totPrice = price * (quantity + 1);
     newCart[index].totCrossedPrice = crossedPrice * (quantity + 1);
-
     dispatch({ type: "INC_ITEM", cart: newCart });
   };
 

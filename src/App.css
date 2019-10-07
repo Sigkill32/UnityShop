@@ -287,4 +287,22 @@ body {
   border-radius: 2px;
 }
 
+.brand-head {
+  display: flex;
+}
+.brand-head h5 {
+  margin-right: 10px;
+}
+
+.collapse-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.hide {
+  display: none;
+}
+
 /*# sourceMappingURL=App.css.map */
