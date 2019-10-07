@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 class Cart extends Component {
   state = {
     sum: 0,
-    gross: 0,
-    decDisable: false
+    gross: 0
   };
 
   placeOrder = () => {
@@ -38,7 +37,6 @@ class Cart extends Component {
       prevProps.cart.length !== this.props.cart.length ||
       prevProps.cart !== this.props.cart
     ) {
-      console.log("update");
       const sum = this.getTotal();
       this.setState({ sum, gross: sum });
     }
@@ -69,7 +67,7 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    const { sum, gross, decDisable } = this.state;
+    const { sum, gross } = this.state;
     return (
       <div className="cart-page">
         {cart.length === 0 ? (
@@ -93,7 +91,6 @@ class Cart extends Component {
                     <Counter
                       onHandleDec={() => this.handleDec(item)}
                       onHandleInc={() => this.handleInc(item)}
-                      decDisable={decDisable}
                       quantity={item.quantity}
                     />
                     <button

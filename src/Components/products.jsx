@@ -43,7 +43,8 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    this.setState({ items: this.props.items });
+    const { brands, items } = this.props;
+    this.setState({ items, brands });
   }
 
   render() {

@@ -15,10 +15,7 @@ class App extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get("https://fresh-rope-219511.appspot.com");
-    // const {productsArray: items, brands} = data;
     this.props.dispatch({ type: "DATA_FETCHED", data });
-    // this.props.dispatch({ type: "FETCH_BRANDS", brands: data.brands });
-    // console.log(data.brands);
   }
 
   render() {

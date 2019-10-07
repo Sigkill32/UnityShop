@@ -1,8 +1,8 @@
 import React from "react";
 
-const Counter = ({ onHandleDec, onHandleInc, decDisable, quantity }) => (
+const Counter = ({ onHandleDec, onHandleInc, quantity }) => (
   <div className="counter">
-    <button onClick={onHandleDec} disabled={decDisable}>
+    <button onClick={onHandleDec} disabled={quantity === 1}>
       -
     </button>
     <p>{quantity}</p>
