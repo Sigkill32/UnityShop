@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Navbar from "./Components/navbar";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Home from "./Components/home";
+import About from "./Components/about";
+import Cart from "./Components/cart";
+import Products from "./Components/products";
+import "./App.css";
+import Wishlist from "./Components/wishlist";
+import axios from "axios";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {};
+
+  async componentDidMount() {
+    const { data } = await axios.get("https://fresh-rope-219511.appspot.com");
+    // const {productsArray: items, brands} = data;
+    this.props.dispatch({ type: "DATA_FETCHED", data });
+    // this.props.dispatch({ type: "FETCH_BRANDS", brands: data.brands });
+    // console.log(data.brands);
+  }
+
+  render() {
+    return (
+      <>
+        <Navbar />
+        <Switch>
+          <Redirect exact from="/" to="/home" />
+          <Route path="/home" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/products" component={Products} />
+          <Route path="/wishlist" component={Wishlist} />
+        </Switch>
+      </>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { items: state.items };
+};
+
+export default connect(mapStateToProps)(App);
