@@ -117,6 +117,10 @@ body {
   input {
     margin-top: 8px;
   }
+
+  .brands {
+    margin-top: 10px;
+  }
 }
 
 .products-page {
@@ -318,13 +322,6 @@ body {
   }
 }
 
-.brand-head {
-  display: flex;
-  h5 {
-    margin-right: 10px;
-  }
-}
-
 .collapse-button {
   background: none;
   border: none;
@@ -334,4 +331,11 @@ body {
 
 .hide {
   display: none;
+}
+
+.head {
+  display: flex;
+  h5 {
+    margin-right: 10px;
+  }
 }

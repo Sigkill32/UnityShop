@@ -13,7 +13,7 @@ class Home extends Component {
             </h3>
           </div>
           <div className="home-hero">
-            <p>Explore various product from your favorite shoping site.</p>
+            <p>Explore various products from your favorite shoping sites.</p>
             <p>
               Order the product you like and sit back, we'll do the shoping for
               you.

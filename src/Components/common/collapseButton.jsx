@@ -5,11 +5,11 @@ import {
   faChevronCircleUp
 } from "@fortawesome/free-solid-svg-icons";
 
-const CollapseButton = ({ onHandleClick, brandCollapsed }) => {
+const CollapseButton = ({ onHandleClick, collapsed }) => {
   return (
     <button onClick={onHandleClick} className="collapse-button">
       <FontAwesomeIcon
-        icon={brandCollapsed ? faChevronCircleDown : faChevronCircleUp}
+        icon={collapsed ? faChevronCircleDown : faChevronCircleUp}
       />
     </button>
   );

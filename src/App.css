@@ -105,6 +105,9 @@ body {
 .filter input {
   margin-top: 8px;
 }
+.filter .brands {
+  margin-top: 10px;
+}
 
 .products-page {
   width: 75%;
@@ -287,13 +290,6 @@ body {
   border-radius: 2px;
 }
 
-.brand-head {
-  display: flex;
-}
-.brand-head h5 {
-  margin-right: 10px;
-}
-
 .collapse-button {
   background: none;
   border: none;
@@ -303,6 +299,13 @@ body {
 
 .hide {
   display: none;
+}
+
+.head {
+  display: flex;
+}
+.head h5 {
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=App.css.map */
