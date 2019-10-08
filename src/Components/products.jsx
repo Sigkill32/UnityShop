@@ -3,6 +3,7 @@ import Search from "./search";
 import { connect } from "react-redux";
 import Spinner from "react-spinkit";
 import Filter from "./filter";
+import { Link } from "react-router-dom";
 
 class Products extends Component {
   state = {
@@ -47,6 +48,14 @@ class Products extends Component {
     this.setState({ items, brands });
   }
 
+  checkItemExistance = productId => {
+    const { cart } = this.props;
+    for (let cartItem of cart) {
+      if (cartItem.productId === productId) return true;
+    }
+    return false;
+  };
+
   render() {
     const { searchStr, items, brands } = this.state;
     return (
@@ -66,12 +75,14 @@ class Products extends Component {
             ) : (
               items.map(item => (
                 <div className="product" key={item.productId}>
-                  <img
-                    src={item.imagesArray[0]}
-                    alt=""
-                    height="300px"
-                    width="220px"
-                  />
+                  <Link to={`/product/${item.productId}`}>
+                    <img
+                      src={item.imagesArray[0]}
+                      alt=""
+                      height="300px"
+                      width="220px"
+                    />
+                  </Link>
                   <h4 className="brand">
                     {item.brandName ? item.brandName : "Unknown"}
                   </h4>
@@ -83,12 +94,18 @@ class Products extends Component {
                     <button
                       id="cart-button"
                       onClick={() => this.handleCart(item)}
+                      disabled={this.checkItemExistance(item.productId)}
                     >
-                      ADD TO CART
+                      {this.checkItemExistance(item.productId)
+                        ? "ADDED TO CART"
+                        : "ADD TO CART"}
                     </button>
                     <button
                       id="wish-button"
                       onClick={() => this.handleWish(item)}
+                      className={
+                        this.checkItemExistance(item.productId) ? "hide" : ""
+                      }
                     >
                       WISHLIST
                     </button>
@@ -104,7 +121,7 @@ class Products extends Component {
 }
 
 const mapStateToProps = state => {
-  return { items: state.items, brands: state.brands };
+  return { items: state.items, brands: state.brands, cart: state.cart };
 };
 
 export default connect(mapStateToProps)(Products);

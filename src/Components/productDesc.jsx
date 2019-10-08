@@ -16,8 +16,9 @@ class ProductDesc extends Component {
   };
 
   render() {
-    const { item } = this.props;
+    const { item, location } = this.props;
     const { currentImage, index } = this.state;
+    console.log(location);
     return (
       <div className="product-desc">
         <div className="item-img">
