@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import CheckBox from "./common/checkBox";
 import CollapseButton from "./common/collapseButton";
 import RadioButton from "./common/radioButton";
+import { connect } from "react-redux";
 
 class Filter extends Component {
   state = {
     brandCollapsed: true,
     discountCollapsed: false,
-    checkedBrands: [],
     radioVal: null
   };
 
@@ -16,25 +16,23 @@ class Filter extends Component {
   };
 
   handleCheck = brand => {
-    let checkedBrands = [...this.state.checkedBrands];
-    if (!checkedBrands.includes(brand)) checkedBrands.push(brand);
-    else checkedBrands = checkedBrands.filter(b => b !== brand);
-    this.setState({ checkedBrands });
-    console.log(this.state.checkedBrands);
+    let checkedBrands = [...this.props.checkedBrands];
+    const { dispatch } = this.props;
+    if (!checkedBrands.includes(brand))
+      dispatch({ type: "ADD_BRAND_FILTER", brand });
+    else {
+      checkedBrands = checkedBrands.filter(b => b !== brand);
+      dispatch({ type: "REMOVE_BRAND_FILTER", checkedBrands });
+    }
   };
 
   handleRadio = radioVal => {
-    this.setState({ radioVal });
+    this.props.dispatch({ type: "UPDATE_RADIO_VAL", radioVal });
   };
 
   render() {
-    const { brands } = this.props;
-    const {
-      brandCollapsed,
-      discountCollapsed,
-      checkedBrands,
-      radioVal
-    } = this.state;
+    const { brands, checkedBrands, radioVal } = this.props;
+    const { brandCollapsed, discountCollapsed } = this.state;
 
     const radioVals = [10, 20, 30, 40, 50];
     return (
@@ -96,4 +94,8 @@ class Filter extends Component {
   }
 }
 
-export default Filter;
+const mapStateToProps = state => {
+  return { checkedBrands: state.checkedBrands, radioVal: state.radioVal };
+};
+
+export default connect(mapStateToProps)(Filter);

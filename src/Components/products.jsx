@@ -56,6 +56,13 @@ class Products extends Component {
     return false;
   };
 
+  handleImageClick = item => {
+    this.props.dispatch({
+      type: "UPDATE_CURRENT_PRODUCT",
+      currentProduct: item
+    });
+  };
+
   render() {
     const { searchStr, items, brands } = this.state;
     return (
@@ -81,6 +88,7 @@ class Products extends Component {
                       alt=""
                       height="300px"
                       width="220px"
+                      onClick={() => this.handleImageClick(item)}
                     />
                   </Link>
                   <h4 className="brand">
@@ -121,7 +129,13 @@ class Products extends Component {
 }
 
 const mapStateToProps = state => {
-  return { items: state.items, brands: state.brands, cart: state.cart };
+  return {
+    items: state.items,
+    brands: state.brands,
+    cart: state.cart,
+    radioVal: state.radioVal,
+    checkedBrands: state.checkedBrands
+  };
 };
 
 export default connect(mapStateToProps)(Products);

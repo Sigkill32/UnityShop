@@ -13,6 +13,17 @@ export function reducer(state = initState, action) {
       return { ...state, cart: [...action.cart] };
     case "FETCH_BRANDS":
       return { ...state, brands: [...action.brands] };
+    case "ADD_BRAND_FILTER":
+      return {
+        ...state,
+        checkedBrands: [...state.checkedBrands, action.brand]
+      };
+    case "UPDATE_RADIO_VAL":
+      return { ...state, radioVal: action.radioVal };
+    case "REMOVE_BRAND_FILTER":
+      return { ...state, checkedBrands: [...action.checkedBrands] };
+    case "UPDATE_CURRENT_PRODUCT":
+      return { ...state, currentProduct: action.currentProduct };
     default:
       return state;
   }
@@ -21,5 +32,8 @@ export function reducer(state = initState, action) {
 const initState = {
   items: [],
   cart: [],
-  brands: []
+  brands: [],
+  radioVal: null,
+  checkedBrands: [],
+  currentProduct: null
 };

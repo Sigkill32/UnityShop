@@ -1,41 +1,68 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class ProductDesc extends Component {
   state = {
-    currentImage: "",
-    index: null
+    currentIndex: null,
+    imagesArray: []
   };
 
   componentDidMount() {
     const { item } = this.props;
-    this.setState({ currentImage: item.imagesArray[0], index: 0 });
+    this.setState({ currentIndex: 0, imagesArray: item.imagesArray });
   }
 
-  handleNext = () => {
-    this.setState(prevState => ({ index: prevState.index + 1 }));
+  handleImageClick = currentIndex => {
+    this.setState({ currentIndex });
+  };
+
+  handleMouseOver = currentIndex => {
+    this.setState({ currentIndex });
   };
 
   render() {
-    const { item, location } = this.props;
-    const { currentImage, index } = this.state;
-    console.log(location);
+    const { imagesArray, currentIndex } = this.state;
+    const { item } = this.props;
     return (
-      <div className="product-desc">
-        <div className="item-img">
-          <button onClick={this.handlePrev} disabled={index === 0}>
-            prev
-          </button>
-          <img src={currentImage} alt="" />
-          <button
-            onClick={this.handleNext}
-            disabled={index === item.length - 1}
-          >
-            next
-          </button>
+      <div className="product-desc-page">
+        <div className="product-desc">
+          <div className="item-img">
+            <img src={imagesArray[currentIndex]} alt="" />
+          </div>
+          <div className="image-list">
+            {imagesArray.map((image, index) => (
+              <img
+                className={currentIndex === index ? "highlight" : ""}
+                src={image}
+                key={index}
+                alt={image}
+                onClick={() => this.handleImageClick(index)}
+                onMouseOver={() => this.handleMouseOver(index)}
+              />
+            ))}
+          </div>
+          <div className="add-items">
+            <button>ADD TO CART</button>
+            <button>WISHLIST</button>
+          </div>
+        </div>
+        <div className="product-details">
+          <h1>{item.brandName}</h1>
+          <h3>{item.title}</h3>
+          <hr />
+          <div className="prices">
+            <h3>{item.price}</h3>
+            <p>{item.crossedPrice}</p>
+            <p>{item.discount}% OFF </p>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default ProductDesc;
+const mapStateToProps = state => {
+  return { item: state.currentProduct };
+};
+
+export default connect(mapStateToProps)(ProductDesc);

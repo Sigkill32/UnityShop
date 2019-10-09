@@ -10,7 +10,6 @@ import Wishlist from "./Components/wishlist";
 import axios from "axios";
 import { connect } from "react-redux";
 import ProductDesc from "./Components/productDesc";
-import NotFound from "./Components/notFound";
 
 class App extends Component {
   state = {};
@@ -31,6 +30,7 @@ class App extends Component {
           <Route path="/cart" component={Cart} />
           <Route path="/products" component={Products} />
           <Route path="/wishlist" component={Wishlist} />
+          <Route path="/product/:id" component={ProductDesc} />
           {/* <Redirect to="/not-found" component={NotFound} /> */}
         </Switch>
       </>

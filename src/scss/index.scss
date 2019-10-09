@@ -346,3 +346,33 @@ body {
     margin-right: 10px;
   }
 }
+
+.product-desc-page {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.product-desc {
+  width: 50%;
+  .image-list {
+    margin-top: 20px;
+    cursor: pointer;
+    img {
+      width: 110px;
+      height: 150px;
+    }
+  }
+}
+
+.product-details {
+  width: 40%;
+
+  .prices {
+    display: flex;
+  }
+}
+
+.highlight {
+  border: solid;
+}
