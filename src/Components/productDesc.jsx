@@ -25,21 +25,21 @@ class ProductDesc extends Component {
     const { item } = this.props;
     return (
       <div className="product-desc-page">
+        <div className="image-list">
+          {imagesArray.map((image, index) => (
+            <img
+              className={currentIndex === index ? "highlight" : ""}
+              src={image}
+              key={index}
+              alt={image}
+              onClick={() => this.handleImageClick(index)}
+              onMouseOver={() => this.handleMouseOver(index)}
+            />
+          ))}
+        </div>
         <div className="product-desc">
           <div className="item-img">
             <img src={imagesArray[currentIndex]} alt="" />
-          </div>
-          <div className="image-list">
-            {imagesArray.map((image, index) => (
-              <img
-                className={currentIndex === index ? "highlight" : ""}
-                src={image}
-                key={index}
-                alt={image}
-                onClick={() => this.handleImageClick(index)}
-                onMouseOver={() => this.handleMouseOver(index)}
-              />
-            ))}
           </div>
           <div className="add-items">
             <button>ADD TO CART</button>
@@ -55,6 +55,16 @@ class ProductDesc extends Component {
             <p>{item.crossedPrice}</p>
             <p>{item.discount}% OFF </p>
           </div>
+          <p>Sold on : {item.ecommerce}</p>
+          <p>Wear type: {item.wearType}</p>
+          <p>Gender: {item.gender === "" ? "Unisex" : item.gender}</p>
+          <a
+            href={item.detailPageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View product on seller's site
+          </a>
         </div>
       </div>
     );

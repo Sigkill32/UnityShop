@@ -23,17 +23,26 @@ body {
   display: inline-block;
   margin: 20px;
 }
-.navbar #cart {
+.navbar .cart {
   float: right;
   margin-right: 40px;
 }
-.navbar #wish {
+.navbar .cart span {
+  position: absolute;
+  right: 22px;
+  top: 10px;
+  font-size: 10px;
+  background-color: red;
+  padding: 5px;
+  border-radius: 5px;
+}
+.navbar .wish {
   float: right;
   margin-right: 10px;
 }
-.navbar span {
+.navbar .wish span {
   position: absolute;
-  right: 22px;
+  right: 70px;
   top: 10px;
   font-size: 10px;
   background-color: red;
@@ -131,16 +140,6 @@ body {
 .products .title {
   margin-bottom: 5px;
 }
-.products .product {
-  margin: 20px;
-  overflow-wrap: break-word;
-  width: 220px;
-  padding: 10px;
-  cursor: pointer;
-}
-.products .product:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 .products .buttons {
   margin-top: 5px;
 }
@@ -162,6 +161,17 @@ body {
   color: white;
   font-weight: bold;
   cursor: pointer;
+}
+
+.product {
+  margin: 20px;
+  overflow-wrap: break-word;
+  width: 220px;
+  padding: 10px;
+  cursor: pointer;
+}
+.product:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .search {
@@ -320,16 +330,19 @@ body {
   flex-wrap: wrap;
 }
 
-.product-desc {
-  width: 50%;
-}
-.product-desc .image-list {
-  margin-top: 20px;
+.image-list {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
 }
-.product-desc .image-list img {
-  width: 110px;
-  height: 150px;
+.image-list img {
+  width: 77px;
+  height: 105px;
+  margin-top: 20px;
+}
+
+.product-desc {
+  width: 50%;
 }
 
 .product-details {
@@ -341,6 +354,29 @@ body {
 
 .highlight {
   border: solid;
+}
+
+.product {
+  position: relative;
+}
+.product .close-icon {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  visibility: hidden;
+}
+.product:hover .close-icon {
+  visibility: visible;
+}
+
+.wish-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wish-items {
+  padding-right: 20px;
+  padding-top: 20px;
 }
 
 /*# sourceMappingURL=App.css.map */

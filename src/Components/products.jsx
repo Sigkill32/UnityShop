@@ -30,7 +30,7 @@ class Products extends Component {
   };
 
   handleWish = item => {
-    console.log(item);
+    this.props.dispatch({ type: "ADD_TO_WISHLIST", item });
   };
 
   componentDidUpdate(prevProps) {

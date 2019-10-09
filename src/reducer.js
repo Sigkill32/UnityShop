@@ -24,6 +24,12 @@ export function reducer(state = initState, action) {
       return { ...state, checkedBrands: [...action.checkedBrands] };
     case "UPDATE_CURRENT_PRODUCT":
       return { ...state, currentProduct: action.currentProduct };
+    case "ADD_TO_WISHLIST":
+      return { ...state, wishList: [...state.wishList, action.item] };
+    case "MOVE_TO_CART":
+      return { ...state, cart: [...state.cart, action.item] };
+    case "REMOVE_FROM_WISHLIST":
+      return { ...state, wishList: [...action.wishList] };
     default:
       return state;
   }
@@ -35,5 +41,6 @@ const initState = {
   brands: [],
   radioVal: null,
   checkedBrands: [],
-  currentProduct: null
+  currentProduct: null,
+  wishList: []
 };

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
-const Navbar = ({ cart }) => {
+const Navbar = ({ cart, wishList }) => {
   return (
     <div className="navbar">
       <ul>
@@ -17,15 +17,20 @@ const Navbar = ({ cart }) => {
         <li>
           <NavLink to="/about">About</NavLink>
         </li>
-        <li id="cart">
+        <li className="cart">
           <NavLink to="/cart">
             <FontAwesomeIcon icon={faShoppingCart} color="white" />
-            {cart.length === 0 ? null : <span>{cart.length}</span>}
+            {cart.length === 0 ? null : (
+              <span className="cart-count">{cart.length}</span>
+            )}
           </NavLink>
         </li>
-        <li id="wish">
+        <li className="wish">
           <NavLink to="/wishlist">
             <FontAwesomeIcon icon={faHeart} color="white" />
+            {wishList.length === 0 ? null : (
+              <span className="wish-count">{wishList.length}</span>
+            )}
           </NavLink>
         </li>
       </ul>
@@ -34,7 +39,7 @@ const Navbar = ({ cart }) => {
 };
 
 const mapStateToProps = state => {
-  return { cart: state.cart };
+  return { cart: state.cart, wishList: state.wishList };
 };
 
 export default connect(mapStateToProps)(Navbar);
