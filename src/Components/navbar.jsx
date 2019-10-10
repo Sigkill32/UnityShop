@@ -9,17 +9,17 @@ const Navbar = ({ cart, wishList }) => {
     <div className="navbar">
       <ul>
         <li>
-          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/home">HOME</NavLink>
         </li>
         <li>
-          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/products">PRODUCTS</NavLink>
         </li>
         <li>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/about">ABOUT</NavLink>
         </li>
         <li className="cart">
           <NavLink to="/cart">
-            <FontAwesomeIcon icon={faShoppingCart} color="white" />
+            <FontAwesomeIcon icon={faShoppingCart} color="black" />
             {cart.length === 0 ? null : (
               <span className="cart-count">{cart.length}</span>
             )}
@@ -27,7 +27,7 @@ const Navbar = ({ cart, wishList }) => {
         </li>
         <li className="wish">
           <NavLink to="/wishlist">
-            <FontAwesomeIcon icon={faHeart} color="white" />
+            <FontAwesomeIcon icon={faHeart} color="#ff3e6c" />
             {wishList.length === 0 ? null : (
               <span className="wish-count">{wishList.length}</span>
             )}

@@ -72,17 +72,6 @@ class ProductDesc extends Component {
           <div className="item-img">
             <img src={imagesArray[currentIndex]} alt="" />
           </div>
-          <div className="add-items">
-            <button id="cart-button" onClick={this.handleCart}>
-              {this.checkItemExistance() ? "ADDED TO CART" : "ADD TO CART"}
-            </button>
-            <button
-              onClick={this.handleWish}
-              className={this.checkItemExistance() ? "hide" : ""}
-            >
-              WISHLIST
-            </button>
-          </div>
         </div>
         <div className="product-details">
           <h1>{item.brandName}</h1>
@@ -93,8 +82,8 @@ class ProductDesc extends Component {
             <p className="crossed-price">₹{item.crossedPrice}</p>
             <p className="off">{item.discount}% OFF </p>
           </div>
-          <p>Sold on : {item.ecommerce}</p>
-          <p>Wear type: {item.wearType}</p>
+          <p>Sold on : {item.ecommerce ? item.ecommerce : "N/A"}</p>
+          <p>Wear type: {item.wearType ? item.wearType : "N/A"}</p>
           <p>Gender: {item.gender === "" ? "Unisex" : item.gender}</p>
           <a
             href={item.detailPageUrl}
@@ -103,6 +92,18 @@ class ProductDesc extends Component {
           >
             View product on seller's site
           </a>
+          <div className="add-items">
+            <button id="cart-button" onClick={this.handleCart}>
+              {this.checkItemExistance() ? "ADDED TO CART" : "ADD TO CART"}
+            </button>
+            <button
+              id="wish-button"
+              onClick={this.handleWish}
+              className={this.checkItemExistance() ? "hide" : ""}
+            >
+              WISHLIST
+            </button>
+          </div>
         </div>
       </div>
     );

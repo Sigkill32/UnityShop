@@ -75,8 +75,7 @@ class Products extends Component {
 
   componentDidMount() {
     const { brands, items } = this.props;
-    this.setState({ items, brands });
-
+    this.setState({ items, brands, initLoad: false });
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -209,12 +208,12 @@ class Products extends Component {
               searchStr={searchStr}
             />
           )}
-          <div className="products">
-            {this.handleLoad()}
-            {isLoading ? (
-              <h2 className="load-more">LOADING MORE ITEMS....</h2>
-            ) : null}
-          </div>
+          <div className="products">{this.handleLoad()}</div>
+          {isLoading ? (
+            <div className="load-more">
+              <Spinner name="three-bounce" />
+            </div>
+          ) : null}
         </div>
       </div>
     );

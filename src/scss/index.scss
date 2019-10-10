@@ -11,10 +11,11 @@ body {
 .navbar {
   width: 100%;
   height: 6vh;
-  background-color: #9b59b6;
+  background-color: white;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-weight: bold;
   }
 
@@ -56,7 +57,6 @@ body {
 }
 
 .home-page {
-  background-color: #34495e;
   height: 94vh;
   position: relative;
 }
@@ -64,7 +64,6 @@ body {
 .home {
   position: absolute;
   text-align: center;
-  color: white;
   // border: solid;
   width: 100%;
   height: 50%;
@@ -91,12 +90,12 @@ body {
     display: inline-block;
     margin-top: 70px;
     text-decoration: none;
-    color: white;
+    color: black;
     border: solid;
     padding: 20px;
     &:hover {
-      background-color: white;
-      color: black;
+      background-color: black;
+      color: white;
     }
   }
 }
@@ -142,6 +141,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  border-left: 1px solid #eaeaec;
   .spinner {
     position: absolute;
     display: inline-block;
@@ -158,31 +158,35 @@ body {
   }
   .buttons {
     margin-top: 5px;
-    #cart-button {
-      background-color: #e74c3c;
-      padding: 10px;
-      border: 1px solid #e74c3c;
-      border-radius: 2px;
-      color: white;
-      font-weight: bold;
-      margin-right: 10px;
-      cursor: pointer;
-    }
+  }
+}
 
-    #wish-button {
-      background-color: #e67e22;
-      padding: 10px;
-      border: 1px solid #e67e22;
-      border-radius: 2px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+#cart-button {
+  background-color: #ff3e6c;
+  padding: 10px;
+  border: 1px solid #ff3e6c;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#wish-button {
+  background-color: #fff;
+  padding: 10px;
+  border: solid 1px #d4d5d9;
+  border-radius: 2px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    border-color: grey;
   }
 }
 
 .product {
-  margin: 20px;
+  margin: 15px;
   overflow-wrap: break-word;
   width: 220px;
   padding: 10px;
@@ -378,10 +382,14 @@ body {
 }
 
 .product-details {
+  margin-top: 20px;
+  h1 {
+    margin-bottom: 10px;
+  }
   width: 40%;
-
   .prices {
     display: flex;
+    margin-top: 20px;
   }
 }
 
@@ -412,6 +420,9 @@ body {
 .wish-items {
   padding-right: 20px;
   padding-top: 20px;
+  .button {
+    margin-top: 5px;
+  }
 }
 
 .item-img {
@@ -419,8 +430,8 @@ body {
 }
 
 .load-more {
-  font-weight: normal;
   padding-bottom: 30px;
+  margin: 0 45%;
 }
 
 .empty-items {
@@ -433,4 +444,8 @@ body {
   position: absolute;
   bottom: 40%;
   right: 25%;
+}
+
+.add-items {
+  margin-top: 20px;
 }

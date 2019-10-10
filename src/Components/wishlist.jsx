@@ -62,9 +62,14 @@ class WishList extends Component {
                   <p className="price">₹{item.price}</p>
                   <p className="crossed-price">₹{item.crossedPrice}</p>
                   <p className="off">({item.discount}% OFF)</p>
-                  <button onClick={() => this.handleMoveToCart(item)}>
-                    MOVE TO CART
-                  </button>
+                  <div className="button">
+                    <button
+                      id="cart-button"
+                      onClick={() => this.handleMoveToCart(item)}
+                    >
+                      MOVE TO CART
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
