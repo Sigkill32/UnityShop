@@ -9,7 +9,8 @@ class Products extends Component {
   state = {
     searchStr: "",
     items: [],
-    brands: []
+    brands: [],
+    brandFilter: []
   };
 
   handleChange = event => {
@@ -41,7 +42,35 @@ class Products extends Component {
       const { brands, items } = this.props;
       this.setState({ items, brands });
     }
+
+    if (prevProps.radioVal !== this.props.radioVal) {
+      const { radioVal } = this.props;
+      const items = this.fiterProductsDiscount(radioVal);
+      this.setState({ items });
+    }
+
+    if (prevProps.checkedBrands !== this.props.checkedBrands) {
+      console.log("brand");
+      const items = this.filterProductBrands(this.props.checkedBrands);
+      this.setState({ items });
+    }
   }
+
+  fiterProductsDiscount = radioVal => {
+    let items = [...this.state.items];
+    items = items.filter(item => item.discount >= radioVal);
+    return items;
+  };
+
+  filterProductBrands = checkedBrands => {
+    if (checkedBrands.length === 0) return this.props.items;
+    let items = [...this.props.items];
+    let newItems = [];
+    for (let item of items) {
+      if (checkedBrands.includes(item.brandName)) newItems.push(item);
+    }
+    return newItems;
+  };
 
   componentDidMount() {
     const { brands, items } = this.props;
