@@ -12,10 +12,10 @@ const getPage = state => state.page;
 
 function* fetchData() {
   const page = yield select(getPage);
-  const data = yield getData(page)
-  yield put({type: 'DATA_FETCHED', data})
+  const data = yield getData(page);
+  yield put({ type: "DATA_FETCHED", data });
 }
 
-export function watchFetchData() {
-  yield takeEvery('FETCH_DATA', fetchData)
+export function* watchFetchData() {
+  yield takeEvery("FETCH_DATA", fetchData);
 }

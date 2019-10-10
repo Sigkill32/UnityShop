@@ -5,10 +5,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
 import { reducer } from "./reducer";
+import { watchFetchData } from "./sagas/saga";
 
-const store = createStore(reducer);
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(watchFetchData);
 
 // const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
