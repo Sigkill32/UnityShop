@@ -31,6 +31,7 @@ class Products extends Component {
   };
 
   handleWish = item => {
+    if (this.checkWishListExistance(item.productId)) return;
     this.props.dispatch({ type: "ADD_TO_WISHLIST", item });
   };
 
@@ -80,6 +81,14 @@ class Products extends Component {
     const { cart } = this.props;
     for (let cartItem of cart) {
       if (cartItem.productId === productId) return true;
+    }
+    return false;
+  };
+
+  checkWishListExistance = productId => {
+    const { wishList } = this.props;
+    for (let wishItem of wishList) {
+      if (wishItem.productId === productId) return true;
     }
     return false;
   };
@@ -162,7 +171,8 @@ const mapStateToProps = state => {
     brands: state.brands,
     cart: state.cart,
     radioVal: state.radioVal,
-    checkedBrands: state.checkedBrands
+    checkedBrands: state.checkedBrands,
+    wishList: state.wishList
   };
 };
 

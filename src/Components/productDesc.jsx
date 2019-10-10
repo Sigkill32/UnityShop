@@ -39,7 +39,16 @@ class ProductDesc extends Component {
 
   handleWish = () => {
     const { dispatch, item } = this.props;
+    if (this.checkWishListExistance(item.productId)) return;
     dispatch({ type: "ADD_TO_WISHLIST", item });
+  };
+
+  checkWishListExistance = productId => {
+    const { wishList } = this.props;
+    for (let wishItem of wishList) {
+      if (wishItem.productId === productId) return true;
+    }
+    return false;
   };
 
   render() {
@@ -101,7 +110,11 @@ class ProductDesc extends Component {
 }
 
 const mapStateToProps = state => {
-  return { item: state.currentProduct, cart: state.cart };
+  return {
+    item: state.currentProduct,
+    cart: state.cart,
+    wishList: state.wishList
+  };
 };
 
 export default connect(mapStateToProps)(ProductDesc);
