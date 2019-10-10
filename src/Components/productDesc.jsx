@@ -20,6 +20,28 @@ class ProductDesc extends Component {
     this.setState({ currentIndex });
   };
 
+  handleCart = () => {
+    const { item } = this.props;
+    let newItem = { ...this.props.item };
+    newItem.quantity = 1;
+    newItem.totPrice = item.price;
+    newItem.totCrossedPrice = item.crossedPrice;
+    this.props.dispatch({ type: "ADD_TO_CART", cart: newItem });
+  };
+
+  checkItemExistance = () => {
+    const { item, cart } = this.props;
+    for (let cartItem of cart) {
+      if (cartItem.productId === item.productId) return true;
+    }
+    return false;
+  };
+
+  handleWish = () => {
+    const { dispatch, item } = this.props;
+    dispatch({ type: "ADD_TO_WISHLIST", item });
+  };
+
   render() {
     const { imagesArray, currentIndex } = this.state;
     const { item } = this.props;
@@ -42,8 +64,15 @@ class ProductDesc extends Component {
             <img src={imagesArray[currentIndex]} alt="" />
           </div>
           <div className="add-items">
-            <button>ADD TO CART</button>
-            <button>WISHLIST</button>
+            <button id="cart-button" onClick={this.handleCart}>
+              {this.checkItemExistance() ? "ADDED TO CART" : "ADD TO CART"}
+            </button>
+            <button
+              onClick={this.handleWish}
+              className={this.checkItemExistance() ? "hide" : ""}
+            >
+              WISHLIST
+            </button>
           </div>
         </div>
         <div className="product-details">
@@ -51,9 +80,9 @@ class ProductDesc extends Component {
           <h3>{item.title}</h3>
           <hr />
           <div className="prices">
-            <h3>{item.price}</h3>
-            <p>{item.crossedPrice}</p>
-            <p>{item.discount}% OFF </p>
+            <h3 className="price">₹{item.price}</h3>
+            <p className="crossed-price">₹{item.crossedPrice}</p>
+            <p className="off">{item.discount}% OFF </p>
           </div>
           <p>Sold on : {item.ecommerce}</p>
           <p>Wear type: {item.wearType}</p>
@@ -72,7 +101,7 @@ class ProductDesc extends Component {
 }
 
 const mapStateToProps = state => {
-  return { item: state.currentProduct };
+  return { item: state.currentProduct, cart: state.cart };
 };
 
 export default connect(mapStateToProps)(ProductDesc);

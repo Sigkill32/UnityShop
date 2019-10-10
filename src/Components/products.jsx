@@ -50,7 +50,6 @@ class Products extends Component {
     }
 
     if (prevProps.checkedBrands !== this.props.checkedBrands) {
-      console.log("brand");
       const items = this.filterProductBrands(this.props.checkedBrands);
       this.setState({ items });
     }

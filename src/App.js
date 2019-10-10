@@ -15,7 +15,9 @@ class App extends Component {
   state = {};
 
   async componentDidMount() {
-    const { data } = await axios.get("https://fresh-rope-219511.appspot.com");
+    const { data } = await axios.get(
+      "https://fresh-rope-219511.appspot.com/?page=2"
+    );
     this.props.dispatch({ type: "DATA_FETCHED", data });
   }
 

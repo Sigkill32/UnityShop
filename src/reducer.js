@@ -42,5 +42,6 @@ const initState = {
   radioVal: null,
   checkedBrands: [],
   currentProduct: null,
-  wishList: []
+  wishList: [],
+  page: 1
 };
