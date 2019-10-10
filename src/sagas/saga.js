@@ -2,10 +2,14 @@ import axios from "axios";
 import { select, put, takeEvery } from "redux-saga/effects";
 
 async function getData(page) {
-  const { data } = await axios.get(
-    "https://fresh-rope-219511.appspot.com/?page=" + page
-  );
-  return data;
+  try {
+    const { data } = await axios.get(
+      "https://fresh-rope-219511.appspot.com/?page=" + page
+    );
+    return data;
+  } catch (error) {
+    return { productsArray: ["Error"], brands: [] };
+  }
 }
 
 const getPage = state => state.page;
@@ -14,6 +18,7 @@ function* fetchData() {
   const page = yield select(getPage);
   const data = yield getData(page);
   yield put({ type: "DATA_FETCHED", data });
+  yield put({ type: "LOADING_COMPLETED" });
 }
 
 export function* watchFetchData() {

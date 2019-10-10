@@ -10,7 +10,8 @@ class Products extends Component {
     searchStr: "",
     items: [],
     brands: [],
-    brandFilter: []
+    brandFilter: [],
+    initLoad: true
   };
 
   handleChange = event => {
@@ -41,7 +42,7 @@ class Products extends Component {
       prevProps.brands !== this.props.brands
     ) {
       const { brands, items } = this.props;
-      this.setState({ items, brands });
+      this.setState({ items, brands, initLoad: false });
     }
 
     if (prevProps.radioVal !== this.props.radioVal) {
@@ -75,6 +76,35 @@ class Products extends Component {
   componentDidMount() {
     const { brands, items } = this.props;
     this.setState({ items, brands });
+
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const windowHeight =
+      "innerHeight" in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight) {
+      const { dispatch } = this.props;
+      dispatch({ type: "INC_PAGE" });
+      dispatch({ type: "IS_LOADING" });
+      dispatch({ type: "FETCH_DATA" });
+    }
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   checkItemExistance = productId => {
@@ -100,64 +130,90 @@ class Products extends Component {
     });
   };
 
+  handleLoad = () => {
+    const { initLoad, items } = this.state;
+    if (initLoad) {
+      return (
+        <div className="spinner">
+          <Spinner name="line-scale" />
+        </div>
+      );
+    }
+    if (!initLoad) {
+      if (items[0] === "Error")
+        return (
+          <div className="error">
+            <h1>
+              An Error occured while loading the items. <br /> Please check your
+              network connection and reload.
+            </h1>
+          </div>
+        );
+      else if (items.length === 0)
+        return <h1 className="empty-items">Nothing To Show</h1>;
+      else if (items.length > 0)
+        return items.map(item => (
+          <div className="product" key={item.productId}>
+            <Link to={`/product/${item.productId}`}>
+              <img
+                src={item.imagesArray[0]}
+                alt=""
+                height="300px"
+                width="220px"
+                onClick={() => this.handleImageClick(item)}
+              />
+            </Link>
+            <h4 className="brand">
+              {item.brandName ? item.brandName : "Unknown"}
+            </h4>
+            <p className="title">{item.title}</p>
+            <p className="price">₹{item.price}</p>
+            <p className="crossed-price">₹{item.crossedPrice}</p>
+            <p className="off">({item.discount}% OFF)</p>
+            <div className="buttons">
+              <button
+                id="cart-button"
+                onClick={() => this.handleCart(item)}
+                disabled={this.checkItemExistance(item.productId)}
+              >
+                {this.checkItemExistance(item.productId)
+                  ? "ADDED TO CART"
+                  : "ADD TO CART"}
+              </button>
+              <button
+                id="wish-button"
+                onClick={() => this.handleWish(item)}
+                className={
+                  this.checkItemExistance(item.productId) ? "hide" : ""
+                }
+              >
+                WISHLIST
+              </button>
+            </div>
+          </div>
+        ));
+    }
+  };
+
   render() {
-    const { searchStr, items, brands } = this.state;
+    const { searchStr, brands, items } = this.state;
+    const { isLoading } = this.props;
     return (
       <div className="products-container">
         <Filter brands={brands} />
         <div className="products-page">
-          <Search
-            onHandleSearch={this.handleSearch}
-            onHandleChange={this.handleChange}
-            searchStr={searchStr}
-          />
+          {items[0] === "Error" ? null : (
+            <Search
+              onHandleSearch={this.handleSearch}
+              onHandleChange={this.handleChange}
+              searchStr={searchStr}
+            />
+          )}
           <div className="products">
-            {items.length === 0 ? (
-              <div className="spinner">
-                <Spinner name="line-scale" />
-              </div>
-            ) : (
-              items.map(item => (
-                <div className="product" key={item.productId}>
-                  <Link to={`/product/${item.productId}`}>
-                    <img
-                      src={item.imagesArray[0]}
-                      alt=""
-                      height="300px"
-                      width="220px"
-                      onClick={() => this.handleImageClick(item)}
-                    />
-                  </Link>
-                  <h4 className="brand">
-                    {item.brandName ? item.brandName : "Unknown"}
-                  </h4>
-                  <p className="title">{item.title}</p>
-                  <p className="price">₹{item.price}</p>
-                  <p className="crossed-price">₹{item.crossedPrice}</p>
-                  <p className="off">({item.discount}% OFF)</p>
-                  <div className="buttons">
-                    <button
-                      id="cart-button"
-                      onClick={() => this.handleCart(item)}
-                      disabled={this.checkItemExistance(item.productId)}
-                    >
-                      {this.checkItemExistance(item.productId)
-                        ? "ADDED TO CART"
-                        : "ADD TO CART"}
-                    </button>
-                    <button
-                      id="wish-button"
-                      onClick={() => this.handleWish(item)}
-                      className={
-                        this.checkItemExistance(item.productId) ? "hide" : ""
-                      }
-                    >
-                      WISHLIST
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
+            {this.handleLoad()}
+            {isLoading ? (
+              <h2 className="load-more">LOADING MORE ITEMS....</h2>
+            ) : null}
           </div>
         </div>
       </div>
@@ -172,7 +228,8 @@ const mapStateToProps = state => {
     cart: state.cart,
     radioVal: state.radioVal,
     checkedBrands: state.checkedBrands,
-    wishList: state.wishList
+    wishList: state.wishList,
+    isLoading: state.isLoading
   };
 };
 

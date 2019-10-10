@@ -417,3 +417,20 @@ body {
 .item-img {
   margin-top: 20px;
 }
+
+.load-more {
+  font-weight: normal;
+  padding-bottom: 30px;
+}
+
+.empty-items {
+  position: absolute;
+  bottom: 50%;
+}
+
+.error {
+  text-align: center;
+  position: absolute;
+  bottom: 40%;
+  right: 25%;
+}

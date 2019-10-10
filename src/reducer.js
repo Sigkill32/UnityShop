@@ -4,7 +4,11 @@ export function reducer(state = initState, action) {
       return { ...state, cart: [...state.cart, action.cart] };
     case "DATA_FETCHED":
       const { productsArray: items, brands } = action.data;
-      return { ...state, items: [...items], brands: [...brands] };
+      return {
+        ...state,
+        items: [...state.items, ...items],
+        brands: [...brands]
+      };
     case "REMOVE_FROM_CART":
       return { ...state, cart: [...action.cart] };
     case "DEC_ITEM":
@@ -30,6 +34,13 @@ export function reducer(state = initState, action) {
       return { ...state, cart: [...state.cart, action.item] };
     case "REMOVE_FROM_WISHLIST":
       return { ...state, wishList: [...action.wishList] };
+    case "INC_PAGE":
+      const newPage = state.page + 1;
+      return { ...state, page: newPage };
+    case "IS_LOADING":
+      return { ...state, isLoading: true };
+    case "LOADING_COMPLETED":
+      return { ...state, isLoading: false };
     default:
       return state;
   }
@@ -43,5 +54,6 @@ const initState = {
   checkedBrands: [],
   currentProduct: null,
   wishList: [],
-  page: 1
+  page: 1,
+  isLoading: false
 };
