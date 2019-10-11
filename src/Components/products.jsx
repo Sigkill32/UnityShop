@@ -157,8 +157,6 @@ class Products extends Component {
               <img
                 src={item.imagesArray[0]}
                 alt=""
-                height="300px"
-                width="220px"
                 onClick={() => this.handleImageClick(item)}
               />
             </Link>
@@ -169,21 +167,22 @@ class Products extends Component {
             <p className="price">₹{item.price}</p>
             <p className="crossed-price">₹{item.crossedPrice}</p>
             <p className="off">({item.discount}% OFF)</p>
-            <div className="buttons">
+            <div className="buttons dont-display">
               <button
-                id="cart-button"
+                className="cart-button"
                 onClick={() => this.handleCart(item)}
-                disabled={this.checkItemExistance(item.productId)}
+                disabled={this.checkItemExistance(item.producclassName)}
               >
                 {this.checkItemExistance(item.productId)
                   ? "ADDED TO CART"
                   : "ADD TO CART"}
               </button>
               <button
-                id="wish-button"
                 onClick={() => this.handleWish(item)}
                 className={
-                  this.checkItemExistance(item.productId) ? "hide" : ""
+                  this.checkItemExistance(item.productId)
+                    ? "hide"
+                    : "wish-button"
                 }
               >
                 WISHLIST

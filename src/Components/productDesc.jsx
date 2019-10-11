@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 class ProductDesc extends Component {
   state = {
     currentIndex: null,
-    imagesArray: []
+    imagesArray: [],
+    disableNext: false,
+    disablePrevious: true
   };
 
   componentDidMount() {
@@ -51,6 +53,14 @@ class ProductDesc extends Component {
     return false;
   };
 
+  handleNext = () => {
+    this.setState(prevState => ({ currentIndex: prevState.currentIndex + 1 }));
+  };
+
+  handlePrevious = () => {
+    this.setState(prevState => ({ currentIndex: prevState.currentIndex - 1 }));
+  };
+
   render() {
     const { imagesArray, currentIndex } = this.state;
     const { item } = this.props;
@@ -72,11 +82,21 @@ class ProductDesc extends Component {
           <div className="item-img">
             <img src={imagesArray[currentIndex]} alt="" />
           </div>
+          <div className="slide-buttons">
+            <button onClick={this.handlePrevious} disabled={currentIndex === 0}>
+              PREVIOUS
+            </button>
+            <button
+              onClick={this.handleNext}
+              disabled={currentIndex === imagesArray.length - 1}
+            >
+              NEXT
+            </button>
+          </div>
         </div>
         <div className="product-details">
           <h1>{item.brandName}</h1>
           <h3>{item.title}</h3>
-          <hr />
           <div className="prices">
             <h3 className="price">₹{item.price}</h3>
             <p className="crossed-price">₹{item.crossedPrice}</p>
@@ -93,13 +113,12 @@ class ProductDesc extends Component {
             View product on seller's site
           </a>
           <div className="add-items">
-            <button id="cart-button" onClick={this.handleCart}>
+            <button className="cart-button" onClick={this.handleCart}>
               {this.checkItemExistance() ? "ADDED TO CART" : "ADD TO CART"}
             </button>
             <button
-              id="wish-button"
               onClick={this.handleWish}
-              className={this.checkItemExistance() ? "hide" : ""}
+              className={this.checkItemExistance() ? "hide" : "wish-button"}
             >
               WISHLIST
             </button>

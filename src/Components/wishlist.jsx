@@ -36,10 +36,7 @@ class WishList extends Component {
           </div>
         ) : (
           <div className="wishlist">
-            <h1>
-              My Wishlist {wishList.length}{" "}
-              {wishList.length === 1 ? "item" : "items"}
-            </h1>
+            <h3>My Wishlist ({wishList.length})</h3>
             <div className="wish-container">
               {wishList.map(item => (
                 <div className="wish-items product" key={item.productId}>
@@ -63,10 +60,7 @@ class WishList extends Component {
                   <p className="crossed-price">₹{item.crossedPrice}</p>
                   <p className="off">({item.discount}% OFF)</p>
                   <div className="button">
-                    <button
-                      id="cart-button"
-                      onClick={() => this.handleMoveToCart(item)}
-                    >
+                    <button onClick={() => this.handleMoveToCart(item)}>
                       MOVE TO CART
                     </button>
                   </div>
