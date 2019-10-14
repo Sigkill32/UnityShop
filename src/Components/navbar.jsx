@@ -62,7 +62,7 @@ class Navbar extends Component {
         </div>
         <div className="icons">
           <ul>
-            <li className="cart">
+            <li className="cart-icon">
               <NavLink to="/cart">
                 <FontAwesomeIcon icon={faShoppingCart} color="black" />
                 {cart.length === 0 ? null : (

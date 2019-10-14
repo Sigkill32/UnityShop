@@ -11,7 +11,8 @@ class Products extends Component {
     items: [],
     brands: [],
     brandFilter: [],
-    initLoad: true
+    initLoad: true,
+    isFilterVisible: false
   };
 
   handleChange = event => {
@@ -129,6 +130,14 @@ class Products extends Component {
     });
   };
 
+  handleFilter = () => {
+    this.setState({ isFilterVisible: true });
+  };
+
+  handleFilterClose = () => {
+    this.setState({ isFilterVisible: false });
+  };
+
   handleLoad = () => {
     const { initLoad, items } = this.state;
     if (initLoad) {
@@ -171,7 +180,7 @@ class Products extends Component {
               <button
                 className="cart-button"
                 onClick={() => this.handleCart(item)}
-                disabled={this.checkItemExistance(item.producclassName)}
+                disabled={this.checkItemExistance(item.productId)}
               >
                 {this.checkItemExistance(item.productId)
                   ? "ADDED TO CART"
@@ -194,27 +203,39 @@ class Products extends Component {
   };
 
   render() {
-    const { searchStr, brands, items } = this.state;
+    const { searchStr, brands, items, isFilterVisible } = this.state;
     const { isLoading } = this.props;
     return (
-      <div className="products-container">
-        <Filter brands={brands} />
-        <div className="products-page">
-          {items[0] === "Error" ? null : (
-            <Search
-              onHandleSearch={this.handleSearch}
-              onHandleChange={this.handleChange}
-              searchStr={searchStr}
-            />
-          )}
-          <div className="products">{this.handleLoad()}</div>
-          {isLoading ? (
-            <div className="load-more">
-              <Spinner name="three-bounce" />
-            </div>
-          ) : null}
+      <>
+        <div className="products-container">
+          <Filter
+            brands={brands}
+            isFilterVisible={isFilterVisible}
+            onHandleFilterClose={this.handleFilterClose}
+          />
+          <div className="products-page">
+            {items[0] === "Error" ? null : (
+              <Search
+                onHandleSearch={this.handleSearch}
+                onHandleChange={this.handleChange}
+                searchStr={searchStr}
+              />
+            )}
+            <div className="products">{this.handleLoad()}</div>
+            {isLoading ? (
+              <div className="load-more">
+                <Spinner name="three-bounce" />
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
+        <div
+          className={isFilterVisible ? "" : "filter-button"}
+          onClick={this.handleFilter}
+        >
+          <button>{isFilterVisible ? "CLOSE" : "APPLY FILTERS"}</button>
+        </div>
+      </>
     );
   }
 }

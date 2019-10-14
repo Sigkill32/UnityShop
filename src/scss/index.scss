@@ -12,6 +12,10 @@ body {
   visibility: hidden;
 }
 
+.filter-close {
+  visibility: hidden;
+}
+
 .nav-close-show {
   visibility: hidden;
 }
@@ -44,7 +48,7 @@ body {
     right: 0;
   }
 
-  .cart {
+  .cart-icon {
     float: right;
     margin-right: 40px;
 
@@ -260,8 +264,9 @@ body {
 
 .cart {
   display: flex;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
   flex-wrap: wrap;
+  width: 100%;
   .items {
     margin-top: 30px;
     width: 60%;
@@ -483,7 +488,6 @@ body {
   .button {
     margin-top: 10px;
     text-align: center;
-    border: 1px solid #e9e9eb;
     button {
       color: #ff3e6c;
       background-color: white;
@@ -542,6 +546,23 @@ body {
   }
 }
 
+.filter-button {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+
+  button {
+    font-weight: bold;
+    background-color: white;
+    border: none;
+    padding: 20px;
+    outline: none;
+  }
+  visibility: hidden;
+}
+
 @media screen and (max-width: 450px) {
   .filter {
     width: 50%;
@@ -549,6 +570,15 @@ body {
     z-index: 999;
     // background-color: red;
     visibility: hidden;
+  }
+
+  .show-filter {
+    visibility: visible;
+    background-color: white;
+    width: 100%;
+    margin: 0;
+    padding-left: 10px;
+    padding-bottom: 30px;
   }
 
   .dont-display {
@@ -693,18 +723,53 @@ body {
       }
     }
   }
-}
 
-.wish-items {
-  padding-right: 0;
-  padding-top: 0;
-}
+  .cart {
+    .items {
+      margin-left: 10px;
+      width: 100%;
+    }
 
-.product {
-  .close-icon {
+    .price-details {
+      margin-left: 10px;
+      width: 100%;
+    }
+  }
+
+  .wish-items {
+    padding-right: 0;
+    padding-top: 0;
+  }
+
+  .product {
+    .close-icon {
+      visibility: visible;
+    }
+  }
+
+  .filter-button {
     visibility: visible;
   }
-}
+
+  .empty-items {
+    left: 15%;
+  }
+
+  .filter-close {
+    visibility: visible;
+    background-color: white;
+    padding: 0 5px;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    border: none;
+    outline: none;
+  }
+
+  .hide-close {
+    visibility: hidden;
+  }
+} //end of media query
 
 @media screen and (max-width: 375px) {
   .product {
@@ -728,5 +793,9 @@ body {
   .product {
     padding: 10px;
     width: 100%;
+  }
+
+  .empty-items {
+    left: 10%;
   }
 }

@@ -3,6 +3,8 @@ import CheckBox from "./common/checkBox";
 import CollapseButton from "./common/collapseButton";
 import RadioButton from "./common/radioButton";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 class Filter extends Component {
   state = {
@@ -31,16 +33,34 @@ class Filter extends Component {
   };
 
   render() {
-    const { brands, checkedBrands, radioVal } = this.props;
+    const {
+      brands,
+      checkedBrands,
+      radioVal,
+      isFilterVisible,
+      onHandleFilterClose
+    } = this.props;
     const { brandCollapsed, discountCollapsed } = this.state;
 
     const radioVals = [10, 20, 30, 40, 50];
     return (
-      <div className="filter">
+      <div
+        className={
+          isFilterVisible ? "filter show-filter" : "filter hide-filter"
+        }
+      >
         {brands.length === 0 ? null : (
           <>
             {" "}
             <h3>Filters</h3>
+            <button
+              className={
+                isFilterVisible ? "filter-close" : "filter-close hide-close"
+              }
+              onClick={onHandleFilterClose}
+            >
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
             <div className="brands">
               <div className="head">
                 <h5>Brands</h5>
