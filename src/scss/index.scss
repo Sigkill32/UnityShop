@@ -801,4 +801,12 @@ body {
   .empty-items {
     left: 10%;
   }
+
+  .wishlist-empty {
+    a {
+      padding-right: 10px;
+      padding-left: 10px;
+      display: inline-block;
+    }
+  }
 }
