@@ -527,19 +527,22 @@ body {
 
 @media screen and (max-width: 450px) {
   .filter {
-    width: 50%;
+    width: 100%;
     position: absolute;
     z-index: 999;
     visibility: hidden;
   }
 
   .show-filter {
+    position: fixed;
+    top: 0;
     visibility: visible;
     background-color: white;
     width: 100%;
     margin: 0;
-    padding-left: 10px;
-    padding-bottom: 30px;
+    padding: 10px;
+    height: 100vh;
+    overflow: auto;
   }
 
   .dont-display {
@@ -708,8 +711,8 @@ body {
     background-color: white;
     padding: 0 5px;
     position: absolute;
-    right: 20px;
-    top: 0;
+    right: 35px;
+    top: 10px;
     border: none;
     outline: none;
   }
