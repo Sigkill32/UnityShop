@@ -52,7 +52,7 @@ class Filter extends Component {
         {brands.length === 0 ? null : (
           <>
             {" "}
-            <h3>Filters</h3>
+            <h3>FILTERS</h3>
             <button
               className={
                 isFilterVisible ? "filter-close" : "filter-close hide-close"
@@ -63,7 +63,7 @@ class Filter extends Component {
             </button>
             <div className="brands">
               <div className="head">
-                <h5>Brands</h5>
+                <h5>BRANDS</h5>
                 <CollapseButton
                   collapsed={brandCollapsed}
                   onHandleClick={() => this.handleClick("brandCollapsed")}
@@ -74,6 +74,7 @@ class Filter extends Component {
               >
                 {brands.map(brand => (
                   <CheckBox
+                    className="brand-checkbox"
                     key={brand === "" ? "unknown" : brand}
                     name={brand === "" ? "unknown" : brand}
                     onHandleCheck={() => this.handleCheck(brand)}
@@ -85,7 +86,7 @@ class Filter extends Component {
             </div>
             <div className="discounts">
               <div className="head">
-                <h5>Discount range</h5>
+                <h5>DISCOUNT RANGE</h5>
                 <CollapseButton
                   collapsed={discountCollapsed}
                   onHandleClick={() => this.handleClick("discountCollapsed")}

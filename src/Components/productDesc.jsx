@@ -113,7 +113,11 @@ class ProductDesc extends Component {
             View product on seller's site
           </a>
           <div className="add-items">
-            <button className="cart-button" onClick={this.handleCart}>
+            <button
+              className="cart-button"
+              onClick={this.handleCart}
+              disabled={this.checkItemExistance(item.productId)}
+            >
               {this.checkItemExistance() ? "ADDED TO CART" : "ADD TO CART"}
             </button>
             <button

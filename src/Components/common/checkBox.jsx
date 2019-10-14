@@ -1,6 +1,6 @@
 import React from "react";
 
-const CheckBox = ({ onHandleCheck, name, value, checked }) => {
+const CheckBox = ({ onHandleCheck, name, value, checked, className }) => {
   return (
     <div>
       <input
@@ -9,6 +9,7 @@ const CheckBox = ({ onHandleCheck, name, value, checked }) => {
         name={name}
         value={value}
         checked={checked}
+        className={className}
       />{" "}
       <span>{name}</span>
     </div>

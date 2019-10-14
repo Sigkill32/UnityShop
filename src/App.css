@@ -525,6 +525,10 @@ body {
   outline: none;
 }
 
+.brands-checkbox {
+  border: solid;
+}
+
 @media screen and (max-width: 450px) {
   .filter {
     width: 100%;
