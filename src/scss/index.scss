@@ -671,6 +671,20 @@ body {
   }
 }
 
+@media screen and (max-width: 770px) {
+  .search {
+    padding: 0;
+    top: 20px;
+    .search-box {
+      width: 100%;
+
+      input {
+        padding: 10px 0;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 450px) {
   .filter {
     width: 100%;
