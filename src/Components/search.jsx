@@ -6,15 +6,15 @@ const Search = ({ onHandleSearch, onHandleChange, searchStr }) => {
   return (
     <div className="search">
       <div className="search-box">
+        <div className="search-icon" onClick={onHandleSearch}>
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
         <input
           type="text"
           onChange={onHandleChange}
           value={searchStr}
           placeholder="Search for products"
         />
-        <button onClick={onHandleSearch}>
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
       </div>
     </div>
   );

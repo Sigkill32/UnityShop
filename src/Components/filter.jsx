@@ -99,6 +99,7 @@ class Filter extends Component {
               >
                 {radioVals.map(val => (
                   <RadioButton
+                    className="discount-range"
                     key={val}
                     onHandleRadio={() => this.handleRadio(val)}
                     value={val}

@@ -26,7 +26,7 @@ body {
 
 .navbar {
   width: 100%;
-  height: 6vh;
+  height: 8vh;
   background-color: white;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   font-size: 15px;
@@ -52,9 +52,9 @@ body {
     float: right;
     margin-right: 40px;
 
-    span {
+    .cart-count {
       position: absolute;
-      right: 22px;
+      right: 25px;
       top: 10px;
       font-size: 10px;
       background-color: red;
@@ -67,9 +67,9 @@ body {
     float: right;
     margin-right: 10px;
 
-    span {
+    .wish-count {
       position: absolute;
-      right: 70px;
+      right: 90px;
       top: 10px;
       font-size: 10px;
       background-color: red;
@@ -151,9 +151,13 @@ body {
 }
 
 .filter {
-  width: 20%;
+  width: 15%;
   margin-left: 10px;
   margin-top: 50px;
+
+  h3 {
+    border-bottom: solid 1px #e9e9ed;
+  }
 
   input {
     margin-top: 8px;
@@ -162,6 +166,9 @@ body {
   .brands {
     margin-top: 10px;
     margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: solid 1px #e9e9ed;
+    border-right: 1px solid #edebef;
   }
 }
 
@@ -173,7 +180,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-left: 1px solid #eaeaec;
   .spinner {
     position: absolute;
     display: inline-block;
@@ -201,6 +207,7 @@ body {
   color: white;
   font-weight: bold;
   margin-right: 10px;
+  font-size: 10px;
   cursor: pointer;
 }
 
@@ -211,6 +218,7 @@ body {
   border-radius: 2px;
   color: black;
   font-weight: bold;
+  font-size: 10px;
   cursor: pointer;
   &:hover {
     border-color: grey;
@@ -236,28 +244,28 @@ body {
 
 .search {
   text-align: center;
+  position: absolute;
+  top: -5px;
+  left: 40%;
+  width: 40%;
+  padding: 20px;
   .search-box {
-    display: inline-flex;
-    margin-top: 20px;
-    width: 40%;
-    border: 1px solid grey;
+    width: 100%;
     border-radius: 5px;
-    padding: 0 1px 0 10px;
+    background: #f5f5f6;
+    position: relative;
     input {
       width: 90%;
-      padding: 5px;
+      padding: 10px 5px;
       border: none;
       outline: none;
-    }
-
-    button {
+      background: #f5f5f6;
       display: inline-block;
-      cursor: pointer;
-      padding: 5px;
-      background-color: white;
-      border: 1px solid white;
-      width: 8%;
-      outline: none;
+    }
+    .search-icon {
+      top: 25%;
+      display: inline-block;
+      margin-right: 10px;
     }
   }
 }
@@ -290,6 +298,15 @@ body {
           border: none;
           font-weight: bold;
           color: red;
+          cursor: pointer;
+        }
+
+        #move-to-wish {
+          margin-left: 10px;
+          background-color: white;
+          border: none;
+          font-weight: bold;
+          color: #ff3e6c;
           cursor: pointer;
         }
       }
@@ -563,8 +580,40 @@ body {
   visibility: hidden;
 }
 
-.brands-checkbox {
-  border: solid;
+.brand-checkbox {
+  span {
+    color: #282c3f;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+}
+
+.discount-range {
+  span {
+    color: #282c3f;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+}
+
+.wishlisted {
+  background-color: #282c3f;
+  color: white;
+}
+
+.discounts {
+  padding: 10px;
+  border-bottom: solid 1px #e9e9ed;
+  border-right: 1px solid #edebef;
+}
+
+.wish-icon-container,
+.cart-icon-container {
+  text-align: center;
+  p {
+    margin-top: 5px;
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -680,10 +729,13 @@ body {
   }
 
   .search {
-    margin-bottom: 5px;
-    width: 95%;
-    .search-box {
-      width: 100%;
+    display: none;
+  }
+
+  .cart-icon-container,
+  .wish-icon-container {
+    p {
+      display: none;
     }
   }
 
@@ -811,6 +863,14 @@ body {
       padding-right: 10px;
       padding-left: 10px;
       display: inline-block;
+    }
+  }
+
+  .search {
+    right: 10%;
+    .search-box {
+      width: 0%;
+      display: block;
     }
   }
 }

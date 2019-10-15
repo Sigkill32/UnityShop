@@ -122,9 +122,18 @@ class ProductDesc extends Component {
             </button>
             <button
               onClick={this.handleWish}
-              className={this.checkItemExistance() ? "hide" : "wish-button"}
+              className={(() => {
+                if (this.checkWishListExistance()) return "hide";
+                else {
+                  if (this.checkWishListExistance(item.productId))
+                    return "wish-button wishlisted";
+                  else return "wish-button";
+                }
+              })()}
             >
-              WISHLIST
+              {this.checkWishListExistance(item.productId)
+                ? "WISHLISTED"
+                : "WISHLIST"}
             </button>
           </div>
         </div>

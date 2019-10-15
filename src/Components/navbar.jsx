@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingCart,
   faHeart,
   faBars,
-  faTimes
+  faTimes,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
@@ -23,7 +24,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { cart, wishList } = this.props;
+    const { cart, wishList, location } = this.props;
     const { isExpanded } = this.state;
     return (
       <div className="navbar">
@@ -58,13 +59,17 @@ class Navbar extends Component {
                 ABOUT
               </NavLink>
             </li>
+            <li></li>
           </ul>
         </div>
         <div className="icons">
           <ul>
             <li className="cart-icon">
               <NavLink to="/cart">
-                <FontAwesomeIcon icon={faShoppingCart} color="black" />
+                <div className="cart-icon-container">
+                  <FontAwesomeIcon icon={faShoppingCart} color="black" />
+                  <p>cart</p>
+                </div>
                 {cart.length === 0 ? null : (
                   <span className="cart-count">{cart.length}</span>
                 )}
@@ -72,7 +77,10 @@ class Navbar extends Component {
             </li>
             <li className="wish">
               <NavLink to="/wishlist">
-                <FontAwesomeIcon icon={faHeart} color="#ff3e6c" />
+                <div className="wish-icon-container">
+                  <FontAwesomeIcon icon={faHeart} color="#ff3e6c" />
+                  <p>wishlist</p>
+                </div>
                 {wishList.length === 0 ? null : (
                   <span className="wish-count">{wishList.length}</span>
                 )}
@@ -89,4 +97,4 @@ const mapStateToProps = state => {
   return { cart: state.cart, wishList: state.wishList };
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default withRouter(connect(mapStateToProps)(Navbar));

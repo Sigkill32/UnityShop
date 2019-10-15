@@ -76,7 +76,7 @@ class Products extends Component {
 
   componentDidMount() {
     const { brands, items } = this.props;
-    this.setState({ items, brands, initLoad: false });
+    this.setState({ items, brands, initLoad: true });
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -188,13 +188,18 @@ class Products extends Component {
               </button>
               <button
                 onClick={() => this.handleWish(item)}
-                className={
-                  this.checkItemExistance(item.productId)
-                    ? "hide"
-                    : "wish-button"
-                }
+                className={(() => {
+                  if (this.checkWishListExistance()) return "hide";
+                  else {
+                    if (this.checkWishListExistance(item.productId))
+                      return "wish-button wishlisted";
+                    else return "wish-button";
+                  }
+                })()}
               >
-                WISHLIST
+                {this.checkWishListExistance(item.productId)
+                  ? "WISHLISTED"
+                  : "WISHLIST"}
               </button>
             </div>
           </div>
@@ -205,6 +210,7 @@ class Products extends Component {
   render() {
     const { searchStr, brands, items, isFilterVisible } = this.state;
     const { isLoading } = this.props;
+    console.log(this.state.initLoad);
     return (
       <>
         <div className="products-container">
@@ -216,7 +222,6 @@ class Products extends Component {
           <div className="products-page">
             {items[0] === "Error" ? null : (
               <Search
-                onHandleSearch={this.handleSearch}
                 onHandleChange={this.handleChange}
                 searchStr={searchStr}
               />

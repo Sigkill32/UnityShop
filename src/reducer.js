@@ -55,5 +55,6 @@ const initState = {
   currentProduct: null,
   wishList: [],
   page: 1,
-  isLoading: false
+  isLoading: false,
+  filteredItems: []
 };

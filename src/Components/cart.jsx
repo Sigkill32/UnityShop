@@ -64,6 +64,20 @@ class Cart extends Component {
     dispatch({ type: "INC_ITEM", cart: newCart });
   };
 
+  handleMove = item => {
+    if (this.checkWishListExistance(item.productId)) return;
+    this.props.dispatch({ type: "ADD_TO_WISHLIST", item });
+    this.handleRemove(item.productId);
+  };
+
+  checkWishListExistance = productId => {
+    const { wishList } = this.props;
+    for (let wishItem of wishList) {
+      if (wishItem.productId === productId) return true;
+    }
+    return false;
+  };
+
   render() {
     const { cart } = this.props;
     const { sum, gross } = this.state;
@@ -92,12 +106,20 @@ class Cart extends Component {
                       onHandleInc={() => this.handleInc(item)}
                       quantity={item.quantity}
                     />
-                    <button
-                      id="remove-button"
-                      onClick={() => this.handleRemove(item.productId)}
-                    >
-                      REMOVE
-                    </button>
+                    <div className="manipulate-buttons">
+                      <button
+                        id="remove-button"
+                        onClick={() => this.handleRemove(item.productId)}
+                      >
+                        REMOVE
+                      </button>
+                      <button
+                        id="move-to-wish"
+                        onClick={() => this.handleMove(item)}
+                      >
+                        MOVE TO WISHLIST
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -132,7 +154,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-  return { cart: state.cart };
+  return { cart: state.cart, wishList: state.wishList };
 };
 
 export default connect(mapStateToProps)(Cart);
