@@ -480,6 +480,8 @@ body {
 .product-details {
   margin-top: 20px;
   width: 40%;
+  padding-bottom: 20px;
+
   .brand-name {
     font-weight: 500;
   }
@@ -682,6 +684,15 @@ body {
         padding: 10px 0;
       }
     }
+  }
+
+  .product-desc {
+    width: 80%;
+  }
+
+  .product-details {
+    margin-left: 25px;
+    width: 100%;
   }
 }
 

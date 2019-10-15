@@ -446,6 +446,7 @@ body {
 .product-details {
   margin-top: 20px;
   width: 40%;
+  padding-bottom: 20px;
 }
 .product-details .brand-name {
   font-weight: 500;
@@ -634,6 +635,15 @@ body {
   }
   .search .search-box input {
     padding: 10px 0;
+  }
+
+  .product-desc {
+    width: 80%;
+  }
+
+  .product-details {
+    margin-left: 25px;
+    width: 100%;
   }
 }
 @media screen and (max-width: 450px) {
