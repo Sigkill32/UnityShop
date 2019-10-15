@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingCart,
   faHeart,
   faBars,
-  faTimes,
-  faSearch
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
@@ -24,7 +23,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { cart, wishList, location } = this.props;
+    const { cart, wishList } = this.props;
     const { isExpanded } = this.state;
     return (
       <div className="navbar">
@@ -97,4 +96,4 @@ const mapStateToProps = state => {
   return { cart: state.cart, wishList: state.wishList };
 };
 
-export default withRouter(connect(mapStateToProps)(Navbar));
+export default connect(mapStateToProps)(Navbar);

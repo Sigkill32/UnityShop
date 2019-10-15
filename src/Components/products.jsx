@@ -37,7 +37,7 @@ class Products extends Component {
     this.props.dispatch({ type: "ADD_TO_WISHLIST", item });
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.items !== this.props.items ||
       prevProps.brands !== this.props.brands
@@ -55,6 +55,10 @@ class Products extends Component {
     if (prevProps.checkedBrands !== this.props.checkedBrands) {
       const items = this.filterProductBrands(this.props.checkedBrands);
       this.setState({ items });
+    }
+
+    if (prevState.items !== this.state.items) {
+      if (this.state.items.length > 0) this.setState({ initLoad: false });
     }
   }
 
@@ -169,13 +173,6 @@ class Products extends Component {
                 onClick={() => this.handleImageClick(item)}
               />
             </Link>
-            <h4 className="brand">
-              {item.brandName ? item.brandName : "Unknown"}
-            </h4>
-            <p className="title">{item.title}</p>
-            <p className="price">₹{item.price}</p>
-            <p className="crossed-price">₹{item.crossedPrice}</p>
-            <p className="off">({item.discount}% OFF)</p>
             <div className="buttons dont-display">
               <button
                 className="cart-button"
@@ -202,6 +199,13 @@ class Products extends Component {
                   : "WISHLIST"}
               </button>
             </div>
+            <h4 className="brand">
+              {item.brandName ? item.brandName : "Unknown"}
+            </h4>
+            <p className="title">{item.title}</p>
+            <p className="price">₹{item.price}</p>
+            <p className="crossed-price">₹{item.crossedPrice}</p>
+            <p className="off">({item.discount}% OFF)</p>
           </div>
         ));
     }
@@ -210,7 +214,6 @@ class Products extends Component {
   render() {
     const { searchStr, brands, items, isFilterVisible } = this.state;
     const { isLoading } = this.props;
-    console.log(this.state.initLoad);
     return (
       <>
         <div className="products-container">

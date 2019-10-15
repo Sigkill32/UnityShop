@@ -95,23 +95,32 @@ class ProductDesc extends Component {
           </div>
         </div>
         <div className="product-details">
-          <h1>{item.brandName}</h1>
-          <h3>{item.title}</h3>
+          <h1 className="brand-name">{item.brandName}</h1>
+          <h1 className="title">{item.title}</h1>
           <div className="prices">
             <h3 className="price">₹{item.price}</h3>
             <p className="crossed-price">₹{item.crossedPrice}</p>
             <p className="off">{item.discount}% OFF </p>
           </div>
-          <p>Sold on : {item.ecommerce ? item.ecommerce : "N/A"}</p>
-          <p>Wear type: {item.wearType ? item.wearType : "N/A"}</p>
-          <p>Gender: {item.gender === "" ? "Unisex" : item.gender}</p>
-          <a
-            href={item.detailPageUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View product on seller's site
-          </a>
+          <h4 className="p-details">PRODUCT DETAILS</h4>
+          <div className="details">
+            <p>
+              Sold on <span>{item.ecommerce ? item.ecommerce : "N/A"}</span>
+            </p>
+            <p>
+              Wear type <span>{item.wearType ? item.wearType : "N/A"}</span>
+            </p>
+            <p>
+              Gender <span>{item.gender === "" ? "Unisex" : item.gender}</span>
+            </p>
+            <a
+              href={item.detailPageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View product on seller's site
+            </a>
+          </div>
           <div className="add-items">
             <button
               className="cart-button"

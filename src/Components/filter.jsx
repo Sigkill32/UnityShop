@@ -8,7 +8,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 class Filter extends Component {
   state = {
-    brandCollapsed: true,
+    brandCollapsed: false,
     discountCollapsed: false,
     radioVal: null
   };

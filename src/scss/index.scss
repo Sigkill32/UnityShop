@@ -26,6 +26,9 @@ body {
 
 .navbar {
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 3;
   height: 8vh;
   background-color: white;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
@@ -174,6 +177,7 @@ body {
 
 .products-page {
   width: 75%;
+  margin-top: 9vh;
 }
 
 .products {
@@ -195,7 +199,17 @@ body {
     margin-bottom: 5px;
   }
   .buttons {
+    position: absolute;
+    top: 260px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    background-color: white;
+    width: 220px;
     margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    display: none;
   }
 }
 
@@ -207,18 +221,18 @@ body {
   color: white;
   font-weight: bold;
   margin-right: 10px;
-  font-size: 10px;
+  font-size: 11px;
   cursor: pointer;
 }
 
 .wish-button {
   background-color: #fff;
-  padding: 10px;
+  padding: 10px 20px;
   border: solid 1px #d4d5d9;
   border-radius: 2px;
   color: black;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
   cursor: pointer;
   &:hover {
     border-color: grey;
@@ -234,6 +248,9 @@ body {
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .buttons {
+      display: flex;
+    }
   }
 
   img {
@@ -244,7 +261,8 @@ body {
 
 .search {
   text-align: center;
-  position: absolute;
+  position: fixed;
+  z-index: 4;
   top: -5px;
   left: 40%;
   width: 40%;
@@ -331,7 +349,7 @@ body {
 
   .price-details {
     width: 30%;
-    margin-top: 30px;
+    margin-top: 130px;
 
     h3 {
       font-weight: normal;
@@ -376,7 +394,8 @@ body {
 
 .cart-page {
   width: 100%;
-  height: 92vh;
+  margin-top: 9vh;
+  height: 80vh;
   position: relative;
 }
 
@@ -428,6 +447,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  padding-top: 9vh;
 }
 
 .image-list {
@@ -442,7 +462,7 @@ body {
 }
 
 .product-desc {
-  width: 50%;
+  width: 30%;
 }
 
 .slide-buttons {
@@ -459,13 +479,46 @@ body {
 
 .product-details {
   margin-top: 20px;
-  h1 {
-    margin-bottom: 10px;
-  }
   width: 40%;
+  .brand-name {
+    font-weight: 500;
+  }
+
+  .title {
+    font-weight: normal;
+    color: #535665;
+    font-size: 20px;
+    padding: 5px 20px 14px 0px;
+    border-bottom: 1px solid #d4d5d9;
+  }
   .prices {
     display: flex;
     margin-top: 20px;
+    .price,
+    .crossed-price,
+    .off {
+      font-size: 24px;
+    }
+  }
+
+  .p-details {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .details {
+    p {
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      span {
+        margin-top: 10px;
+        font-size: 15px;
+        display: block;
+        font-weight: normal;
+        color: #535665;
+      }
+    }
   }
 }
 
@@ -490,7 +543,7 @@ body {
 
 .wishlist {
   h3 {
-    margin: 10px 0 10px 20px;
+    margin: 0 0 10px 20px;
   }
 }
 
@@ -542,7 +595,8 @@ body {
 }
 
 .wishlist-page {
-  height: 93vh;
+  padding-top: 9vh;
+  height: 90vh;
 }
 
 .wishlist-empty {
@@ -599,6 +653,7 @@ body {
 .wishlisted {
   background-color: #282c3f;
   color: white;
+  padding: 10px 13px;
 }
 
 .discounts {
@@ -679,12 +734,12 @@ body {
 
   .navbar {
     height: 8vh;
+    z-index: 20;
     .links {
       width: 45%;
-      height: 100%;
+      padding-bottom: 130%;
       position: absolute;
       background-color: white;
-      z-index: 999;
       box-shadow: 3px 0px 9px 3px rgba(0, 0, 0, 0.75);
     }
   }
@@ -721,15 +776,14 @@ body {
     }
     &:hover {
       box-shadow: none;
+      .buttons {
+        display: none;
+      }
     }
   }
 
   p {
     font-size: 12px;
-  }
-
-  .search {
-    display: none;
   }
 
   .cart-icon-container,
@@ -828,6 +882,28 @@ body {
   .hide-close {
     visibility: hidden;
   }
+
+  .search {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    left: 0;
+
+    .search-box {
+      input {
+        width: 80%;
+        padding: 10px 0;
+      }
+
+      .search-icon {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .home {
+    margin-top: 80px;
+  }
 } //end of media query
 
 @media screen and (max-width: 375px) {
@@ -863,14 +939,6 @@ body {
       padding-right: 10px;
       padding-left: 10px;
       display: inline-block;
-    }
-  }
-
-  .search {
-    right: 10%;
-    .search-box {
-      width: 0%;
-      display: block;
     }
   }
 }

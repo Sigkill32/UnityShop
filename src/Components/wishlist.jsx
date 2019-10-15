@@ -50,7 +50,6 @@ class WishList extends Component {
                     alt=""
                     height="300px"
                     width="220px"
-                    onClick={() => this.handleImageClick(item)}
                   />
                   <h4 className="brand">
                     {item.brandName ? item.brandName : "Unknown"}
