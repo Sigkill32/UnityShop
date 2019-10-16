@@ -200,7 +200,6 @@ body {
 .products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
 }
 .products .spinner {
   position: absolute;
