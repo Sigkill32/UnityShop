@@ -14,9 +14,9 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(watchFetchData);
 
-const unsubscribe = store.subscribe(() =>
-  console.log(store.getState().isLoading)
-);
+// const unsubscribe = store.subscribe(() =>
+//   console.log(store.getState().isLoading)
+// );
 
 ReactDOM.render(
   <Provider store={store}>
