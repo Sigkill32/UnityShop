@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 class ProductDesc extends Component {
   state = {
@@ -100,7 +102,7 @@ class ProductDesc extends Component {
           <div className="prices">
             <h3 className="price">₹{item.price}</h3>
             <p className="crossed-price">₹{item.crossedPrice}</p>
-            <p className="off">{item.discount}% OFF </p>
+            <p className="off">({item.discount}% OFF) </p>
           </div>
           <h4 className="p-details">PRODUCT DETAILS</h4>
           <div className="details">
@@ -118,7 +120,8 @@ class ProductDesc extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View product on seller's site
+              View product on seller's site &nbsp; &nbsp;
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
             </a>
           </div>
           <div className="add-items">

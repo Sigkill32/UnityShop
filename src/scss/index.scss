@@ -177,7 +177,7 @@ body {
 
 .products-page {
   width: 75%;
-  margin-top: 9vh;
+  padding-top: 9vh;
 }
 
 .products {
@@ -762,7 +762,7 @@ body {
     z-index: 20;
     .links {
       width: 45%;
-      padding-bottom: 130%;
+      padding-bottom: 100vh;
       position: absolute;
       background-color: white;
       box-shadow: 3px 0px 9px 3px rgba(0, 0, 0, 0.75);
@@ -782,6 +782,7 @@ body {
 
   .products-page {
     width: 100%;
+    padding-top: 5.5vh;
   }
 
   .products {
@@ -845,6 +846,26 @@ body {
   .product-details {
     width: 100%;
     margin-left: 10px;
+
+    .brand-name {
+      font-size: 20px;
+    }
+
+    .title {
+      font-size: 14px;
+    }
+
+    .prices {
+      .off {
+        color: red;
+        font-size: 20px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
     p {
       font-size: 15px;
     }
@@ -913,7 +934,7 @@ body {
     width: 100%;
     padding: 0;
     left: 0;
-
+    margin-bottom: 20px;
     .search-box {
       input {
         width: 80%;
@@ -928,6 +949,10 @@ body {
 
   .home {
     margin-top: 80px;
+  }
+
+  .wish-count {
+    right: 70px;
   }
 } //end of media query
 
