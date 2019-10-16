@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Navbar from "./Components/navbar";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./Components/home";
-import About from "./Components/about";
 import Cart from "./Components/cart";
 import Products from "./Components/products";
 import "./App.css";
@@ -22,7 +21,6 @@ class App extends Component {
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home" component={Home} />
-          <Route path="/about" component={About} />
           <Route path="/cart" component={Cart} />
           <Route path="/products" component={Products} />
           <Route path="/wishlist" component={Wishlist} />

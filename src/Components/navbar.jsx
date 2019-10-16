@@ -53,12 +53,6 @@ class Navbar extends Component {
                 PRODUCTS
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/about" onClick={this.handleNavButtonClose}>
-                ABOUT
-              </NavLink>
-            </li>
-            <li></li>
           </ul>
         </div>
         <div className="icons">
