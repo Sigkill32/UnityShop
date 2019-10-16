@@ -27,6 +27,10 @@ class Products extends Component {
 
   handleCart = item => {
     let newItem = { ...item };
+    const wishList = this.props.wishList.filter(
+      wishItem => wishItem.productId !== item.productId
+    );
+    this.props.dispatch({ type: "REMOVE_FROM_WISHLIST", wishList });
     newItem.quantity = 1;
     newItem.totPrice = item.price;
     newItem.totCrossedPrice = item.crossedPrice;

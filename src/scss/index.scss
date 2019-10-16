@@ -219,7 +219,6 @@ body {
 .products {
   display: flex;
   flex-wrap: wrap;
-  // justify-content: space-evenly;
   .spinner {
     position: absolute;
     display: inline-block;
@@ -238,7 +237,7 @@ body {
     position: absolute;
     top: 260px;
     padding-bottom: 10px;
-    padding-top: 5px;
+    padding-top: 10px;
     background-color: white;
     width: 220px;
     margin-top: 5px;
