@@ -38,7 +38,8 @@ class Filter extends Component {
       checkedBrands,
       radioVal,
       isFilterVisible,
-      onHandleFilterClose
+      onHandleFilterClose,
+      onHandleApply
     } = this.props;
     const { brandCollapsed, discountCollapsed } = this.state;
 
@@ -108,6 +109,9 @@ class Filter extends Component {
                   />
                 ))}
               </div>
+            </div>
+            <div className="apply-filters">
+              <button onClick={onHandleApply}>Apply and close</button>
             </div>
           </>
         )}

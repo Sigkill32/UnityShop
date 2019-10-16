@@ -158,7 +158,8 @@ const mapStateToProps = state => {
   return {
     item: state.currentProduct,
     cart: state.cart,
-    wishList: state.wishList
+    wishList: state.wishList,
+    items: state.items
   };
 };
 
