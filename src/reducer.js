@@ -41,6 +41,8 @@ export function reducer(state = initState, action) {
       return { ...state, isLoading: true };
     case "LOADING_COMPLETED":
       return { ...state, isLoading: false };
+    case "CLEAR_BRAND_FILTER":
+      return { ...state, checkedBrands: [...action.brands] };
     default:
       return state;
   }

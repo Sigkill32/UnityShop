@@ -24,6 +24,10 @@ body {
   display: block;
 }
 
+.apply-filters {
+  visibility: hidden;
+}
+
 .navbar {
   width: 100%;
   position: fixed;
@@ -503,6 +507,10 @@ body {
     }
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .p-details {
     margin-bottom: 20px;
     margin-top: 20px;
@@ -703,6 +711,12 @@ body {
     z-index: 999;
     // background-color: red;
     visibility: hidden;
+    .brands {
+      .brand-names {
+        overflow: auto;
+        height: 50vh;
+      }
+    }
   }
 
   .show-filter {
@@ -715,6 +729,25 @@ body {
     padding: 10px;
     height: 100vh;
     overflow: auto;
+
+    .apply-filters {
+      visibility: visible;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: white;
+      text-align: center;
+      border-top: 1px solid #e9e9ed;
+      button {
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: white;
+        border: none;
+        padding: 20px;
+        color: #ff3e6c;
+        outline: none;
+      }
+    }
   }
 
   .dont-display {
@@ -860,10 +893,6 @@ body {
         color: red;
         font-size: 20px;
       }
-    }
-
-    a {
-      text-decoration: none;
     }
 
     p {

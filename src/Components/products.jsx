@@ -136,10 +136,14 @@ class Products extends Component {
 
   handleFilter = () => {
     this.setState({ isFilterVisible: true });
+    const { checkedBrands } = this.props;
+    this.setState({ brandFilter: checkedBrands });
   };
 
   handleFilterClose = () => {
     this.setState({ isFilterVisible: false });
+    const { brandFilter } = this.state;
+    this.props.dispatch({ type: "CLEAR_BRAND_FILTER", brands: brandFilter });
   };
 
   handleLoad = () => {
@@ -211,6 +215,10 @@ class Products extends Component {
     }
   };
 
+  handleApply = () => {
+    this.setState({ isFilterVisible: false });
+  };
+
   render() {
     const { searchStr, brands, items, isFilterVisible } = this.state;
     const { isLoading } = this.props;
@@ -221,6 +229,7 @@ class Products extends Component {
             brands={brands}
             isFilterVisible={isFilterVisible}
             onHandleFilterClose={this.handleFilterClose}
+            onHandleApply={this.handleApply}
           />
           <div className="products-page">
             {items[0] === "Error" ? null : (

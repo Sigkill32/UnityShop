@@ -24,6 +24,10 @@ body {
   display: block;
 }
 
+.apply-filters {
+  visibility: hidden;
+}
+
 .navbar {
   width: 100%;
   position: fixed;
@@ -467,6 +471,9 @@ body {
 .product-details .prices .off {
   font-size: 24px;
 }
+.product-details a {
+  text-decoration: none;
+}
 .product-details .p-details {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -653,6 +660,10 @@ body {
     z-index: 999;
     visibility: hidden;
   }
+  .filter .brands .brand-names {
+    overflow: auto;
+    height: 50vh;
+  }
 
   .show-filter {
     position: fixed;
@@ -664,6 +675,24 @@ body {
     padding: 10px;
     height: 100vh;
     overflow: auto;
+  }
+  .show-filter .apply-filters {
+    visibility: visible;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    border-top: 1px solid #e9e9ed;
+  }
+  .show-filter .apply-filters button {
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: white;
+    border: none;
+    padding: 20px;
+    color: #ff3e6c;
+    outline: none;
   }
 
   .dont-display {
@@ -796,9 +825,6 @@ body {
   .product-details .prices .off {
     color: red;
     font-size: 20px;
-  }
-  .product-details a {
-    text-decoration: none;
   }
   .product-details p {
     font-size: 15px;
