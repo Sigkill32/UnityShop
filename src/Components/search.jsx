@@ -2,9 +2,9 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Search = ({ onHandleSearch, onHandleChange, searchStr }) => {
+const Search = ({ onHandleSearch, onHandleChange, searchStr, className }) => {
   return (
-    <div className="search">
+    <div className={className}>
       <div className="search-box">
         <div className="search-icon" onClick={onHandleSearch}>
           <FontAwesomeIcon icon={faSearch} />

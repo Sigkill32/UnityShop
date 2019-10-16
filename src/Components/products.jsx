@@ -12,7 +12,8 @@ class Products extends Component {
     brands: [],
     brandFilter: [],
     initLoad: true,
-    isFilterVisible: false
+    isFilterVisible: false,
+    brandSearchStr: ""
   };
 
   handleChange = event => {
@@ -219,8 +220,23 @@ class Products extends Component {
     this.setState({ isFilterVisible: false });
   };
 
+  handleBrandChange = event => {
+    const brandSearchStr = event.target.value;
+    const { brands } = this.props;
+    const newBrands = brands.filter(brand =>
+      brand.toLowerCase().includes(brandSearchStr.toLowerCase())
+    );
+    this.setState({ brands: newBrands, brandSearchStr });
+  };
+
   render() {
-    const { searchStr, brands, items, isFilterVisible } = this.state;
+    const {
+      searchStr,
+      brands,
+      items,
+      isFilterVisible,
+      brandSearchStr
+    } = this.state;
     const { isLoading } = this.props;
     return (
       <>
@@ -230,12 +246,15 @@ class Products extends Component {
             isFilterVisible={isFilterVisible}
             onHandleFilterClose={this.handleFilterClose}
             onHandleApply={this.handleApply}
+            onHandleChange={this.handleBrandChange}
+            searchStr={brandSearchStr}
           />
           <div className="products-page">
             {items[0] === "Error" ? null : (
               <Search
                 onHandleChange={this.handleChange}
                 searchStr={searchStr}
+                className="search"
               />
             )}
             <div className="products">{this.handleLoad()}</div>

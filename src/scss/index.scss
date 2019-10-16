@@ -176,7 +176,39 @@ body {
     padding: 10px;
     border-bottom: solid 1px #e9e9ed;
     border-right: 1px solid #edebef;
+    .head {
+      position: relative;
+      .brand-search {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        .search-box {
+          background-color: white;
+          input {
+            width: 85%;
+            display: inline-block;
+            background-color: #f5f5f6;
+            border: none;
+            padding: 5px 4px;
+          }
+
+          .search-icon {
+            // border: solid;
+            width: 10%;
+            display: inline-block;
+            display: none;
+          }
+        }
+      }
+    }
   }
+}
+
+.brand-search-icon {
+  position: absolute;
+  right: 30px;
+  top: -7px;
+  cursor: pointer;
 }
 
 .products-page {
@@ -687,7 +719,6 @@ body {
     top: 20px;
     .search-box {
       width: 100%;
-
       input {
         padding: 10px 0;
       }

@@ -4,13 +4,15 @@ import CollapseButton from "./common/collapseButton";
 import RadioButton from "./common/radioButton";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
+import Search from "./search";
 
 class Filter extends Component {
   state = {
     brandCollapsed: false,
     discountCollapsed: false,
-    radioVal: null
+    radioVal: null,
+    toggle: false // search bar is not open;
   };
 
   handleClick = collapseVar => {
@@ -32,6 +34,10 @@ class Filter extends Component {
     this.props.dispatch({ type: "UPDATE_RADIO_VAL", radioVal });
   };
 
+  handleSearchToggle = () => {
+    this.setState(prevState => ({ toggle: !prevState.toggle }));
+  };
+
   render() {
     const {
       brands,
@@ -39,9 +45,11 @@ class Filter extends Component {
       radioVal,
       isFilterVisible,
       onHandleFilterClose,
-      onHandleApply
+      onHandleApply,
+      onHandleChange,
+      searchStr
     } = this.props;
-    const { brandCollapsed, discountCollapsed } = this.state;
+    const { brandCollapsed, discountCollapsed, toggle } = this.state;
 
     const radioVals = [10, 20, 30, 40, 50];
     return (
@@ -65,10 +73,19 @@ class Filter extends Component {
             <div className="brands">
               <div className="head">
                 <h5>BRANDS</h5>
-                <CollapseButton
-                  collapsed={brandCollapsed}
-                  onHandleClick={() => this.handleClick("brandCollapsed")}
-                />
+                {toggle ? (
+                  <Search
+                    onHandleChange={onHandleChange}
+                    searchStr={searchStr}
+                    className="brand-search"
+                  />
+                ) : null}
+                <div
+                  onClick={this.handleSearchToggle}
+                  className="brand-search-icon"
+                >
+                  <FontAwesomeIcon icon={toggle ? faTimes : faSearch} />
+                </div>
               </div>
               <div
                 className={brandCollapsed ? "brand-names hide" : "brand-names"}
