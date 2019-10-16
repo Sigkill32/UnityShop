@@ -467,6 +467,9 @@ body {
 .product-details .prices .off {
   font-size: 24px;
 }
+.product-details a {
+  text-decoration: none;
+}
 .product-details .p-details {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -796,9 +799,6 @@ body {
   .product-details .prices .off {
     color: red;
     font-size: 20px;
-  }
-  .product-details a {
-    text-decoration: none;
   }
   .product-details p {
     font-size: 15px;

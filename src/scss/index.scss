@@ -503,6 +503,10 @@ body {
     }
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .p-details {
     margin-bottom: 20px;
     margin-top: 20px;
@@ -860,10 +864,6 @@ body {
         color: red;
         font-size: 20px;
       }
-    }
-
-    a {
-      text-decoration: none;
     }
 
     p {
