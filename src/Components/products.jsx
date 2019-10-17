@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import Spinner from "react-spinkit";
 import Filter from "./filter";
 import { Link } from "react-router-dom";
+import Empty from "./common/empty";
+import NoNetwork from "./common/noNetwork";
 
 class Products extends Component {
   state = {
@@ -14,6 +16,7 @@ class Products extends Component {
     initLoad: true,
     isFilterVisible: false,
     brandSearchStr: "",
+    page: 1,
     toggle: false // search bar is not open;
   };
 
@@ -165,14 +168,17 @@ class Products extends Component {
       if (items[0] === "Error")
         return (
           <div className="error">
-            <h1>
-              An Error occured while loading the items. <br /> Please check your
-              network connection and reload.
-            </h1>
+            <NoNetwork />
+            <h3>Please check your connection</h3>
           </div>
         );
       else if (items.length === 0)
-        return <h1 className="empty-items">Nothing To Show</h1>;
+        return (
+          <div className="empty-items">
+            <Empty />
+            <h3>Nothing to show</h3>
+          </div>
+        );
       else if (items.length > 0)
         return items.map(item => (
           <div className="product" key={item.productId}>

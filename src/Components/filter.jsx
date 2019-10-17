@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CheckBox from "./common/checkBox";
-import CollapseButton from "./common/collapseButton";
 import RadioButton from "./common/radioButton";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
