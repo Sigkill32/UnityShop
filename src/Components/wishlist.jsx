@@ -9,11 +9,16 @@ class WishList extends Component {
 
   handleMoveToCart = item => {
     let newItem = { ...item };
-    newItem.quantity = 1;
-    newItem.totPrice = item.price;
-    newItem.totCrossedPrice = item.crossedPrice;
-    this.props.dispatch({ type: "MOVE_TO_CART", item: newItem });
-    this.handleRemove(item);
+    if (this.checkItemExistance(item.productId)) {
+      this.handleInc(item);
+      this.handleRemove(item);
+    } else {
+      newItem.quantity = 1;
+      newItem.totPrice = item.price;
+      newItem.totCrossedPrice = item.crossedPrice;
+      this.props.dispatch({ type: "MOVE_TO_CART", item: newItem });
+      this.handleRemove(item);
+    }
   };
 
   handleRemove = item => {
@@ -22,6 +27,27 @@ class WishList extends Component {
       wishItem => wishItem.productId !== item.productId
     );
     this.props.dispatch({ type: "REMOVE_FROM_WISHLIST", wishList });
+  };
+
+  checkItemExistance = productId => {
+    const { cart } = this.props;
+    for (let cartItem of cart) {
+      if (cartItem.productId === productId) return true;
+    }
+    return false;
+  };
+
+  handleInc = item => {
+    const { dispatch, cart } = this.props;
+    const index = cart.findIndex(
+      cartItem => cartItem.productId === item.productId
+    );
+    const newCart = [...cart];
+    const { quantity, price, crossedPrice } = newCart[index];
+    newCart[index].quantity = quantity + 1;
+    newCart[index].totPrice = price * (quantity + 1);
+    newCart[index].totCrossedPrice = crossedPrice * (quantity + 1);
+    dispatch({ type: "INC_ITEM", cart: newCart });
   };
 
   render() {
@@ -74,7 +100,7 @@ class WishList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { wishList: state.wishList };
+  return { wishList: state.wishList, cart: state.cart };
 };
 
 export default connect(mapStateToProps)(WishList);
