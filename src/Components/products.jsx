@@ -160,7 +160,7 @@ class Products extends Component {
     if (initLoad) {
       return (
         <div className="spinner">
-          <Spinner name="line-scale" />
+          <Spinner name="line-scale" fadeIn="none" />
         </div>
       );
     }
@@ -288,7 +288,7 @@ class Products extends Component {
             <div className="products">{this.handleLoad()}</div>
             {isLoading ? (
               <div className="load-more">
-                <Spinner name="three-bounce" />
+                <Spinner name="three-bounce" fadeIn="none" />
               </div>
             ) : null}
           </div>

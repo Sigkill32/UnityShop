@@ -361,10 +361,10 @@ body {
           font-weight: bold;
           color: red;
           cursor: pointer;
+          margin-right: 10px;
         }
 
         #move-to-wish {
-          margin-left: 10px;
           background-color: white;
           border: none;
           font-weight: bold;
@@ -381,14 +381,15 @@ body {
   }
 
   .order {
-    background-color: #d35400;
+    background-color: #ff3e6c;
     padding: 10px;
-    border: 1px solid #d35400;
+    border: 1px solid #ff3e6c;
     border-radius: 2px;
     color: white;
     font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
+    margin-left: 10px;
   }
 
   .price-details {
@@ -963,12 +964,13 @@ body {
   .cart {
     .items {
       margin-left: 10px;
-      width: 100%;
+      width: 90%;
     }
 
     .price-details {
-      margin-left: 10px;
-      width: 100%;
+      margin-left: 20px;
+      width: 90%;
+      margin-top: 30px;
     }
   }
 
