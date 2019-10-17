@@ -2,7 +2,13 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Search = ({ onHandleSearch, onHandleChange, searchStr, className }) => {
+const Search = ({
+  onHandleSearch,
+  onHandleChange,
+  searchStr,
+  className,
+  placeholder
+}) => {
   return (
     <div className={className}>
       <div className="search-box">
@@ -13,7 +19,7 @@ const Search = ({ onHandleSearch, onHandleChange, searchStr, className }) => {
           type="text"
           onChange={onHandleChange}
           value={searchStr}
-          placeholder="Search for products"
+          placeholder={placeholder}
         />
       </div>
     </div>

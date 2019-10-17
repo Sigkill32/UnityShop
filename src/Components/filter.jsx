@@ -8,13 +8,6 @@ import { faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import Search from "./search";
 
 class Filter extends Component {
-  state = {
-    brandCollapsed: false,
-    discountCollapsed: false,
-    radioVal: null,
-    toggle: false // search bar is not open;
-  };
-
   handleClick = collapseVar => {
     this.setState(prevState => ({ [collapseVar]: !prevState[collapseVar] }));
   };
@@ -34,10 +27,6 @@ class Filter extends Component {
     this.props.dispatch({ type: "UPDATE_RADIO_VAL", radioVal });
   };
 
-  handleSearchToggle = () => {
-    this.setState(prevState => ({ toggle: !prevState.toggle }));
-  };
-
   render() {
     const {
       brands,
@@ -47,10 +36,11 @@ class Filter extends Component {
       onHandleFilterClose,
       onHandleApply,
       onHandleChange,
-      searchStr
+      searchStr,
+      toggle,
+      onHandleSearchToggle,
+      items
     } = this.props;
-    const { brandCollapsed, discountCollapsed, toggle } = this.state;
-
     const radioVals = [10, 20, 30, 40, 50];
     return (
       <div
@@ -58,7 +48,7 @@ class Filter extends Component {
           isFilterVisible ? "filter show-filter" : "filter hide-filter"
         }
       >
-        {brands.length === 0 ? null : (
+        {items.length === 0 ? null : (
           <>
             {" "}
             <h3>FILTERS</h3>
@@ -77,19 +67,18 @@ class Filter extends Component {
                   <Search
                     onHandleChange={onHandleChange}
                     searchStr={searchStr}
+                    placeholder="Search for brands"
                     className="brand-search"
                   />
                 ) : null}
                 <div
-                  onClick={this.handleSearchToggle}
+                  onClick={onHandleSearchToggle}
                   className="brand-search-icon"
                 >
                   <FontAwesomeIcon icon={toggle ? faTimes : faSearch} />
                 </div>
               </div>
-              <div
-                className={brandCollapsed ? "brand-names hide" : "brand-names"}
-              >
+              <div className="brand-names">
                 {brands.map(brand => (
                   <CheckBox
                     className="brand-checkbox"
@@ -105,16 +94,8 @@ class Filter extends Component {
             <div className="discounts">
               <div className="head">
                 <h5>DISCOUNT RANGE</h5>
-                <CollapseButton
-                  collapsed={discountCollapsed}
-                  onHandleClick={() => this.handleClick("discountCollapsed")}
-                />
               </div>
-              <div
-                className={
-                  discountCollapsed ? "disconut-list hide" : "disconut-list"
-                }
-              >
+              <div className="disconut-list">
                 {radioVals.map(val => (
                   <RadioButton
                     className="discount-range"
@@ -138,7 +119,11 @@ class Filter extends Component {
 }
 
 const mapStateToProps = state => {
-  return { checkedBrands: state.checkedBrands, radioVal: state.radioVal };
+  return {
+    checkedBrands: state.checkedBrands,
+    radioVal: state.radioVal,
+    items: state.items
+  };
 };
 
 export default connect(mapStateToProps)(Filter);

@@ -176,11 +176,18 @@ body {
     padding: 10px;
     border-bottom: solid 1px #e9e9ed;
     border-right: 1px solid #edebef;
+
+    .brand-names {
+      height: 50vh;
+      overflow: auto;
+    }
+
     .head {
       position: relative;
+      margin-bottom: 15px;
       .brand-search {
         position: absolute;
-        top: -20px;
+        top: -17px;
         left: 0;
         .search-box {
           background-color: white;
@@ -189,7 +196,9 @@ body {
             display: inline-block;
             background-color: #f5f5f6;
             border: none;
-            padding: 5px 4px;
+            padding: 8px;
+            border-radius: 20px;
+            outline: none;
           }
 
           .search-icon {
@@ -207,7 +216,7 @@ body {
 .brand-search-icon {
   position: absolute;
   right: 30px;
-  top: -7px;
+  top: -4px;
   cursor: pointer;
 }
 

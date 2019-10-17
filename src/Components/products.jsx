@@ -13,7 +13,8 @@ class Products extends Component {
     brandFilter: [],
     initLoad: true,
     isFilterVisible: false,
-    brandSearchStr: ""
+    brandSearchStr: "",
+    toggle: false // search bar is not open;
   };
 
   handleChange = event => {
@@ -233,13 +234,27 @@ class Products extends Component {
     this.setState({ brands: newBrands, brandSearchStr });
   };
 
+  handleToggle = () => {
+    const { toggle } = this.state;
+    const { brands } = this.props;
+    if (toggle) {
+      this.setState(prevState => ({
+        toggle: !prevState.toggle,
+        brandSearchStr: "",
+        brands
+      }));
+      console.log("open");
+    } else this.setState(prevState => ({ toggle: !prevState.toggle }));
+  };
+
   render() {
     const {
       searchStr,
       brands,
       items,
       isFilterVisible,
-      brandSearchStr
+      brandSearchStr,
+      toggle
     } = this.state;
     const { isLoading } = this.props;
     return (
@@ -252,12 +267,15 @@ class Products extends Component {
             onHandleApply={this.handleApply}
             onHandleChange={this.handleBrandChange}
             searchStr={brandSearchStr}
+            toggle={toggle}
+            onHandleSearchToggle={this.handleToggle}
           />
           <div className="products-page">
             {items[0] === "Error" ? null : (
               <Search
                 onHandleChange={this.handleChange}
                 searchStr={searchStr}
+                placeholder="Search for products"
                 className="search"
               />
             )}
