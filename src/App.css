@@ -671,6 +671,13 @@ body {
   border-bottom: solid 1px #e9e9ed;
   border-right: 1px solid #edebef;
 }
+.discounts .head {
+  display: flex;
+  justify-content: space-between;
+}
+.discounts .head h5 {
+  padding: 5px;
+}
 
 .wish-icon-container,
 .cart-icon-container {
@@ -680,6 +687,18 @@ body {
 .cart-icon-container p {
   margin-top: 5px;
   font-size: 12px;
+}
+
+.reset-discount {
+  background-color: white;
+  padding: 2px;
+  border: 1px solid #eaeaec;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #282c3f;
+  cursor: pointer;
+  outline: none;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 770px) {

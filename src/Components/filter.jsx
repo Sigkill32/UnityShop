@@ -93,6 +93,12 @@ class Filter extends Component {
             <div className="discounts">
               <div className="head">
                 <h5>DISCOUNT RANGE</h5>
+                <button
+                  onClick={() => this.handleRadio(null)}
+                  className="reset-discount"
+                >
+                  reset
+                </button>
               </div>
               <div className="disconut-list">
                 {radioVals.map(val => (
