@@ -15,10 +15,10 @@ async function getData(page) {
 const getPage = state => state.page;
 
 function* fetchData() {
+  // yield put({ type: "IS_LAODING" });
   const page = yield select(getPage);
   const data = yield getData(page);
   yield put({ type: "DATA_FETCHED", data });
-  yield put({ type: "LOADING_COMPLETED" });
 }
 
 export function* watchFetchData() {

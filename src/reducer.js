@@ -7,7 +7,8 @@ export function reducer(state = initState, action) {
       return {
         ...state,
         items: [...state.items, ...items],
-        brands: [...brands]
+        brands: [...brands],
+        isLoading: false
       };
     case "REMOVE_FROM_CART":
       return { ...state, cart: [...action.cart] };
@@ -39,8 +40,6 @@ export function reducer(state = initState, action) {
       return { ...state, page: newPage };
     case "IS_LOADING":
       return { ...state, isLoading: true };
-    case "LOADING_COMPLETED":
-      return { ...state, isLoading: false };
     case "CLEAR_BRAND_FILTER":
       return { ...state, checkedBrands: [...action.brands] };
     default:
@@ -57,6 +56,5 @@ const initState = {
   currentProduct: null,
   wishList: [],
   page: 1,
-  isLoading: false,
-  filteredItems: []
+  isLoading: false
 };
